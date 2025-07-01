@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import heroImage from "../public/images/osho-hero-image.jpg";
 
 export function ParallaxHero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -114,7 +115,7 @@ export function ParallaxHero() {
             >
               <div className="bg-white p-4 rounded-2xl shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-300">
                 <Image
-                  src="https://getwallpapers.com/wallpaper/full/1/b/9/402511.jpg"
+                  src={heroImage}
                   alt="Featured Guitar"
                   width={400}
                   height={400}
