@@ -1,40 +1,47 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
-import { Loader2, CheckCircle } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent } from "@/components/ui/card";
+import { Loader2, CheckCircle } from "lucide-react";
 
 interface Product {
-  id: number
-  name: string
-  price: number
-  unit: string
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  originalPrice: number;
+  category: string;
+  image: string;
+  inStock: string;
+  isNew: string;
+  isSale: string;
+  unit: string;
 }
 
 interface OrderFormProps {
-  product: Product
+  product: Product;
 }
 
 export function OrderForm({ product }: OrderFormProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [quantity, setQuantity] = useState(1)
-  const [customerName, setCustomerName] = useState("")
-  const [customerEmail, setCustomerEmail] = useState("")
-  const [customerPhone, setCustomerPhone] = useState("")
-  const [specialRequests, setSpecialRequests] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [customerName, setCustomerName] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
+  const [specialRequests, setSpecialRequests] = useState("");
 
-  const totalPrice = (product.price * quantity).toFixed(2)
+  const totalPrice = (product.price * quantity).toFixed(2);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       const response = await fetch("/api/send-order", {
@@ -57,20 +64,20 @@ export function OrderForm({ product }: OrderFormProps) {
           },
           specialRequests,
         }),
-      })
+      });
 
       if (response.ok) {
-        setIsSubmitted(true)
+        setIsSubmitted(true);
       } else {
-        throw new Error("Failed to send order")
+        throw new Error("Failed to send order");
       }
     } catch (error) {
-      console.error("Error sending order:", error)
-      alert("Failed to send order. Please try again or contact us directly.")
+      console.error("Error sending order:", error);
+      alert("Failed to send order. Please try again or contact us directly.");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   if (isSubmitted) {
     return (
@@ -78,10 +85,13 @@ export function OrderForm({ product }: OrderFormProps) {
         <CardContent className="pt-6">
           <div className="text-center space-y-4">
             <CheckCircle className="h-12 w-12 text-green-600 mx-auto" />
-            <h3 className="text-lg font-semibold text-green-800">Order Sent Successfully!</h3>
+            <h3 className="text-lg font-semibold text-green-800">
+              Order Sent Successfully!
+            </h3>
             <p className="text-green-700">
-              Thank you for your order! We've received your request and will contact you soon to confirm the details and
-              arrange pickup or delivery.
+              Thank you for your order! We've received your request and will
+              contact you soon to confirm the details and arrange pickup or
+              delivery.
             </p>
             <div className="bg-white p-4 rounded-lg border border-green-200">
               <h4 className="font-semibold mb-2">Order Summary:</h4>
@@ -92,7 +102,7 @@ export function OrderForm({ product }: OrderFormProps) {
           </div>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   return (
@@ -115,21 +125,30 @@ export function OrderForm({ product }: OrderFormProps) {
             type="number"
             min="1"
             value={quantity}
-            onChange={(e) => setQuantity(Math.max(1, Number.parseInt(e.target.value) || 1))}
+            onChange={(e) =>
+              setQuantity(Math.max(1, Number.parseInt(e.target.value) || 1))
+            }
             className="w-20 text-center"
           />
-          <Button type="button" variant="outline" size="sm" onClick={() => setQuantity(quantity + 1)}>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => setQuantity(quantity + 1)}
+          >
             +
           </Button>
-          <span className="text-sm text-muted-foreground ml-2">{product.unit}</span>
+          <span className="text-sm text-muted-foreground ml-2">
+            {product.unit}
+          </span>
         </div>
       </div>
-
-      {/* Total Price */}
-      <div className="bg-red-50 p-3 rounded-lg">
-        <p className="text-lg font-semibold text-red-700">Total: ${totalPrice}</p>
+      {/* Total Price */}{" "}
+      <div className="bg-purple-100 p-3 rounded-lg">
+        <p className="text-lg font-semibold text-purple-700">
+          Total: ₹{totalPrice}
+        </p>
       </div>
-
       {/* Customer Information */}
       <div className="space-y-4">
         <h4 className="font-semibold">Your Information</h4>
@@ -181,8 +200,11 @@ export function OrderForm({ product }: OrderFormProps) {
           />
         </div>
       </div>
-
-      <Button type="submit" className="w-full bg-red-600 hover:bg-red-700" disabled={isSubmitting}>
+      <Button
+        type="submit"
+        className="w-full bg-purple-600 hover:bg-purple-700"
+        disabled={isSubmitting}
+      >
         {isSubmitting ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -192,11 +214,10 @@ export function OrderForm({ product }: OrderFormProps) {
           "Send Order to Shop"
         )}
       </Button>
-
       <p className="text-xs text-muted-foreground text-center">
-        By placing this order, you agree to be contacted by the shop owner to confirm details and arrange pickup or
-        delivery.
+        By placing this order, you agree to be contacted by the shop owner to
+        confirm details and arrange pickup or delivery.
       </p>
     </form>
-  )
+  );
 }

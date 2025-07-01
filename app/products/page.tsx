@@ -1,16 +1,28 @@
-"use client"
+"use client";
 
-import { useState, useMemo } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Navbar } from "@/components/navbar"
-import { Search, Grid, List } from "lucide-react"
-import { ShareButton } from "@/components/share-button"
+import { useState, useMemo } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Navbar } from "@/components/navbar";
+import { Search, Grid, List } from "lucide-react";
+import { ShareButton } from "@/components/share-button";
 
 const allProducts = [
   {
@@ -211,64 +223,60 @@ const allProducts = [
     isSale: false,
     rating: 4.8,
   },
-]
+];
 
 export default function ProductsPage() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("all")
-  const [selectedBrand, setSelectedBrand] = useState("all")
-  const [sortBy, setSortBy] = useState("name")
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedBrand, setSelectedBrand] = useState("all");
+  const [sortBy, setSortBy] = useState("name");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  const categories = ["all", ...Array.from(new Set(allProducts.map((p) => p.category)))]
-  const brands = ["all", ...Array.from(new Set(allProducts.map((p) => p.brand)))]
+  const categories = [
+    "all",
+    ...Array.from(new Set(allProducts.map((p) => p.category))),
+  ];
+  const brands = [
+    "all",
+    ...Array.from(new Set(allProducts.map((p) => p.brand))),
+  ];
 
   const filteredAndSortedProducts = useMemo(() => {
     const filtered = allProducts.filter((product) => {
       const matchesSearch =
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.brand.toLowerCase().includes(searchTerm.toLowerCase())
-      const matchesCategory = selectedCategory === "all" || product.category === selectedCategory
-      const matchesBrand = selectedBrand === "all" || product.brand === selectedBrand
+        product.brand.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory =
+        selectedCategory === "all" || product.category === selectedCategory;
+      const matchesBrand =
+        selectedBrand === "all" || product.brand === selectedBrand;
 
-      return matchesSearch && matchesCategory && matchesBrand
-    })
+      return matchesSearch && matchesCategory && matchesBrand;
+    });
 
     // Sort products
     filtered.sort((a, b) => {
       switch (sortBy) {
         case "price-low":
-          return a.price - b.price
+          return a.price - b.price;
         case "price-high":
-          return b.price - a.price
+          return b.price - a.price;
         case "rating":
-          return b.rating - a.rating
+          return b.rating - a.rating;
         case "newest":
-          return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0)
+          return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0);
         default:
-          return a.name.localeCompare(b.name)
+          return a.name.localeCompare(b.name);
       }
-    })
+    });
 
-    return filtered
-  }, [searchTerm, selectedCategory, selectedBrand, sortBy])
+    return filtered;
+  }, [searchTerm, selectedCategory, selectedBrand, sortBy]);
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-
-      {/* Header */}
-      <section className="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">All Products</h1>
-            <p className="text-xl text-purple-100 max-w-2xl mx-auto">
-              Explore our complete collection of musical instruments and audio equipment
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* Filters and Search */}
       <section className="py-8 bg-white border-b">
@@ -288,7 +296,10 @@ export default function ProductsPage() {
 
             {/* Filters */}
             <div className="flex flex-wrap gap-4 items-center">
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+              <Select
+                value={selectedCategory}
+                onValueChange={setSelectedCategory}
+              >
                 <SelectTrigger className="w-40">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
@@ -351,7 +362,8 @@ export default function ProductsPage() {
 
           {/* Results Count */}
           <div className="mt-4 text-gray-600">
-            Showing {filteredAndSortedProducts.length} of {allProducts.length} products
+            Showing {filteredAndSortedProducts.length} of {allProducts.length}{" "}
+            products
           </div>
         </div>
       </section>
@@ -362,13 +374,17 @@ export default function ProductsPage() {
           {filteredAndSortedProducts.length === 0 ? (
             <div className="text-center py-16">
               <div className="text-6xl mb-4">🎵</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
-              <p className="text-gray-600 mb-6">Try adjusting your search or filter criteria</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                No products found
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Try adjusting your search or filter criteria
+              </p>
               <Button
                 onClick={() => {
-                  setSearchTerm("")
-                  setSelectedCategory("all")
-                  setSelectedBrand("all")
+                  setSearchTerm("");
+                  setSelectedCategory("all");
+                  setSelectedBrand("all");
                 }}
               >
                 Clear All Filters
@@ -377,7 +393,9 @@ export default function ProductsPage() {
           ) : (
             <div
               className={`grid gap-6 ${
-                viewMode === "grid" ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "grid-cols-1"
+                viewMode === "grid"
+                  ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                  : "grid-cols-1"
               }`}
             >
               {filteredAndSortedProducts.map((product) => (
@@ -387,7 +405,9 @@ export default function ProductsPage() {
                     viewMode === "list" ? "flex flex-row" : ""
                   }`}
                 >
-                  <CardHeader className={`p-0 relative ${viewMode === "list" ? "w-48 flex-shrink-0" : ""}`}>
+                  <CardHeader
+                    className={`p-0 relative ${viewMode === "list" ? "w-48 flex-shrink-0" : ""}`}
+                  >
                     <div className="relative overflow-hidden">
                       <Image
                         src={product.image || "/placeholder.svg"}
@@ -400,28 +420,42 @@ export default function ProductsPage() {
                       />
                       <div className="absolute top-3 left-3 flex flex-col gap-2">
                         {product.isNew && (
-                          <Badge className="bg-green-500 hover:bg-green-600 text-white font-semibold">NEW</Badge>
+                          <Badge className="bg-green-500 hover:bg-green-600 text-white font-semibold">
+                            NEW
+                          </Badge>
                         )}
                         {product.isSale && (
-                          <Badge className="bg-red-500 hover:bg-red-600 text-white font-semibold">SALE</Badge>
+                          <Badge className="bg-red-500 hover:bg-red-600 text-white font-semibold">
+                            SALE
+                          </Badge>
                         )}
                       </div>
                       {!product.inStock && (
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                          <Badge variant="secondary" className="text-lg px-4 py-2">
+                          <Badge
+                            variant="secondary"
+                            className="text-lg px-4 py-2"
+                          >
                             Out of Stock
                           </Badge>
                         </div>
                       )}
                     </div>
                   </CardHeader>
-                  <div className={`flex flex-col justify-between ${viewMode === "list" ? "flex-1" : ""}`}>
+                  <div
+                    className={`flex flex-col justify-between ${viewMode === "list" ? "flex-1" : ""}`}
+                  >
                     <CardContent className="p-4">
                       <div className="flex justify-between items-start mb-2">
-                        <Badge variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-200">
+                        <Badge
+                          variant="outline"
+                          className="text-xs bg-purple-50 text-purple-700 border-purple-200"
+                        >
                           {product.category}
                         </Badge>
-                        <div className="text-right text-xs text-gray-500">⭐ {product.rating}</div>
+                        <div className="text-right text-xs text-gray-500">
+                          ⭐ {product.rating}
+                        </div>
                       </div>
                       <CardTitle
                         className={`mb-2 group-hover:text-purple-600 transition-colors ${
@@ -430,12 +464,20 @@ export default function ProductsPage() {
                       >
                         {product.name}
                       </CardTitle>
-                      <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{product.description}</p>
-                      <p className="text-xs text-gray-500 mb-2">Brand: {product.brand}</p>
+                      <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
+                        {product.description}
+                      </p>
+                      <p className="text-xs text-gray-500 mb-2">
+                        Brand: {product.brand}
+                      </p>
                       <div className="flex items-center space-x-2">
-                        <p className="text-2xl font-bold text-purple-600">${product.price}</p>
+                        <p className="text-2xl font-bold text-purple-600">
+                          ₹{product.price}
+                        </p>
                         {product.originalPrice && (
-                          <p className="text-lg text-gray-400 line-through">${product.originalPrice}</p>
+                          <p className="text-lg text-gray-400 line-through">
+                            ₹{product.originalPrice}
+                          </p>
                         )}
                       </div>
                     </CardContent>
@@ -466,5 +508,5 @@ export default function ProductsPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

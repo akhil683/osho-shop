@@ -1,21 +1,22 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function ParallaxHero() {
-  const heroRef = useRef<HTMLElement>(null)
-  const [scrollY, setScrollY] = useState(0)
+  const heroRef = useRef<HTMLElement>(null);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY)
-    }
+      setScrollY(window.scrollY);
+    };
 
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <section
@@ -69,12 +70,16 @@ export function ParallaxHero() {
       >
         <div className="absolute top-24 right-16 opacity-20">
           <div className="w-24 h-24 bg-white rounded-xl shadow-lg p-2 rotate-12">
-            <div className="w-full h-full bg-purple-100 rounded-lg flex items-center justify-center text-2xl">🎸</div>
+            <div className="w-full h-full bg-purple-100 rounded-lg flex items-center justify-center text-2xl">
+              🎸
+            </div>
           </div>
         </div>
         <div className="absolute bottom-24 left-16 opacity-20">
           <div className="w-20 h-20 bg-white rounded-xl shadow-lg p-2 -rotate-12">
-            <div className="w-full h-full bg-purple-100 rounded-lg flex items-center justify-center text-xl">🎹</div>
+            <div className="w-full h-full bg-purple-100 rounded-lg flex items-center justify-center text-xl">
+              🎹
+            </div>
           </div>
         </div>
       </div>
@@ -115,7 +120,9 @@ export function ParallaxHero() {
                 }}
               >
                 Welcome to
-                <span className="block text-yellow-300 mt-2">Harmony Hub</span>
+                <span className="block text-yellow-300 mt-2">
+                  Sadhana Music House
+                </span>
               </h1>
               <p
                 className="text-xl text-purple-100 leading-relaxed max-w-lg"
@@ -123,8 +130,9 @@ export function ParallaxHero() {
                   transform: `translateY(${scrollY * -0.03}px)`,
                 }}
               >
-                Discover the world's finest musical instruments and audio equipment. From beginner-friendly options to
-                professional-grade gear, we have everything you need to create beautiful music.
+                Discover the world's finest musical instruments and audio
+                equipment. From beginner-friendly options to professional-grade
+                gear, we have everything you need to create beautiful music.
               </p>
             </div>
 
@@ -136,16 +144,16 @@ export function ParallaxHero() {
             >
               <Button
                 size="lg"
-                className="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-4 text-lg font-semibold"
+                className="bg-yellow-600 hover:bg-yellow-700 px-8 py-4 text-lg"
               >
-                Shop Instruments
+                <Link href={"/products"}>Shop Instruments</Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-white text-white hover:bg-white hover:text-purple-900 px-8 py-4 text-lg bg-transparent"
               >
-                Browse Brands
+                <Link href={"/products"}>Browse Brands</Link>
               </Button>
             </div>
 
@@ -182,15 +190,17 @@ export function ParallaxHero() {
             >
               <div className="bg-white p-4 rounded-2xl shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-300">
                 <Image
-                  src="/placeholder.svg?height=400&width=400"
+                  src="https://getwallpapers.com/wallpaper/full/1/b/9/402511.jpg"
                   alt="Featured Guitar"
                   width={400}
                   height={400}
                   className="w-full h-72 object-cover rounded-xl"
                 />
                 <div className="p-4">
-                  <h3 className="font-semibold text-lg text-gray-900">Gibson Les Paul Standard</h3>
-                  <p className="text-purple-600 font-bold text-xl">$2,499.99</p>
+                  <h3 className="font-semibold text-lg text-gray-900">
+                    Gibson Les Paul Standard
+                  </h3>
+                  <p className="text-purple-600 font-bold text-xl">₹2,499.99</p>
                 </div>
               </div>
             </div>
@@ -203,7 +213,9 @@ export function ParallaxHero() {
               }}
             >
               <div className="bg-white p-3 rounded-xl shadow-lg transform -rotate-12 hover:rotate-0 transition-transform duration-300">
-                <div className="w-24 h-24 bg-purple-100 rounded-lg flex items-center justify-center text-3xl">🎹</div>
+                <div className="w-24 h-24 bg-purple-100 rounded-lg flex items-center justify-center text-3xl">
+                  🎹
+                </div>
                 <div className="mt-2 text-center">
                   <p className="text-sm font-medium">Keyboards</p>
                   <p className="text-purple-600 font-bold text-sm">From $299</p>
@@ -218,7 +230,9 @@ export function ParallaxHero() {
               }}
             >
               <div className="bg-white p-3 rounded-xl shadow-lg transform rotate-12 hover:rotate-0 transition-transform duration-300">
-                <div className="w-24 h-24 bg-purple-100 rounded-lg flex items-center justify-center text-3xl">🥁</div>
+                <div className="w-24 h-24 bg-purple-100 rounded-lg flex items-center justify-center text-3xl">
+                  🥁
+                </div>
                 <div className="mt-2 text-center">
                   <p className="text-sm font-medium">Drum Kits</p>
                   <p className="text-purple-600 font-bold text-sm">From $699</p>
@@ -233,7 +247,9 @@ export function ParallaxHero() {
               }}
             >
               <div className="bg-white p-3 rounded-xl shadow-lg transform rotate-6 hover:rotate-0 transition-transform duration-300">
-                <div className="w-24 h-24 bg-purple-100 rounded-lg flex items-center justify-center text-3xl">🎤</div>
+                <div className="w-24 h-24 bg-purple-100 rounded-lg flex items-center justify-center text-3xl">
+                  🎤
+                </div>
                 <div className="mt-2 text-center">
                   <p className="text-sm font-medium">Audio Gear</p>
                   <p className="text-purple-600 font-bold text-sm">From $99</p>
@@ -265,7 +281,9 @@ export function ParallaxHero() {
           }}
         >
           <div className="text-center mb-8">
-            <p className="text-purple-200 font-medium">Trusted by musicians worldwide</p>
+            <p className="text-purple-200 font-medium">
+              Trusted by musicians worldwide
+            </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60">
             {[
@@ -309,5 +327,5 @@ export function ParallaxHero() {
         ))}
       </div>
     </section>
-  )
+  );
 }
