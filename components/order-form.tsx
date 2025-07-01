@@ -15,13 +15,12 @@ interface Product {
   name: string;
   description: string;
   price: number;
-  originalPrice: number;
+  originalPrice?: number;
   category: string;
   image: string;
-  inStock: string;
-  isNew: string;
-  isSale: string;
-  unit: string;
+  inStock: boolean;
+  isNew: boolean;
+  isSale: boolean;
 }
 
 interface OrderFormProps {

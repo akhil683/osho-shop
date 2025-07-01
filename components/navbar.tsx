@@ -63,7 +63,6 @@ export function Navbar() {
               <p className="text-xs text-gray-500 -mt-1">Musical Instruments</p>
             </div>
           </Link>
-
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navigationItems.map((item) => (
@@ -77,9 +76,8 @@ export function Navbar() {
               </Link>
             ))}
           </nav>
-
-          {/* Right Actions */}
-          <div className="flex items-center space-x-4">
+          {/* Right Actions */}{" "}
+          <div className="md:hidden flex items-center space-x-4">
             {/* Mobile Menu */}
             <Sheet>
               <SheetTrigger asChild>
