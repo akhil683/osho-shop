@@ -30,10 +30,10 @@ export default function HomePage() {
       <section className="py-16 bg-gradient-to-b from-white to-purple-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="md:text-4xl text-3xl font-bold text-gray-900 mb-4">
               Featured Instruments
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="md:text-xl text-gray-600 max-w-2xl mx-auto">
               Discover our handpicked selection of premium musical instruments
               from top brands
             </p>
@@ -250,11 +250,6 @@ export default function HomePage() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/services" className="hover:text-white">
-                    Services
-                  </Link>
-                </li>
-                <li>
                   <Link href="/about" className="hover:text-white">
                     About Us
                   </Link>
@@ -289,17 +284,17 @@ export default function HomePage() {
             <div>
               <h5 className="font-semibold mb-4">Contact Info</h5>
               <ul className="space-y-2 text-gray-400">
-                <li>📍 123 Music Street, Harmony City</li>
+                <li>📍 Sundarnagar, Mandi</li>
                 <li>📞 (555) 123-MUSIC</li>
-                <li>📧 info@harmonyhub.com</li>
+                <li>📧 hi@sadhanamusichouse.com</li>
                 <li>🕒 Mon-Sat: 10AM-8PM</li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
             <p>
-              &copy; 2024 Harmony Hub. All rights reserved. | Making music
-              accessible to everyone.
+              &copy; 2025 Sadhana Music House. All rights reserved. | Making
+              music accessible to everyone.
             </p>
           </div>
         </div>

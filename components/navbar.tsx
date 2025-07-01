@@ -32,15 +32,6 @@ export function Navbar() {
     { name: "About", href: "/about" },
   ];
 
-  const categories = [
-    { name: "Guitars", href: "/category/guitars" },
-    { name: "Keyboards & Pianos", href: "/category/keyboards" },
-    { name: "Drums & Percussion", href: "/category/drums" },
-    { name: "Audio Equipment", href: "/category/audio" },
-    { name: "Accessories", href: "/category/accessories" },
-    { name: "Sheet Music", href: "/category/sheet-music" },
-  ];
-
   return (
     <header
       className={`sticky top-0 z-50 bg-white border-b transition-all duration-300 ${
@@ -48,7 +39,7 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between md:h-20 h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="relative">
@@ -87,12 +78,12 @@ export function Navbar() {
               </SheetTrigger>
               <SheetContent side="right" className="w-80">
                 <SheetHeader>
-                  <SheetTitle className="text-left">Menu</SheetTitle>
+                  <SheetTitle className="text-left text-2xl">Menu</SheetTitle>
                   <SheetDescription className="text-left">
                     Navigate through our music store
                   </SheetDescription>
-                </SheetHeader>
-                <nav className="mt -8space-y-6">
+                </SheetHeader>{" "}
+                <nav className="mt-8 space-y-6">
                   {navigationItems.map((item) => (
                     <Link
                       key={item.name}

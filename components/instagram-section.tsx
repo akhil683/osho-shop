@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Instagram,
   Heart,
@@ -16,66 +16,68 @@ import {
   CheckCircle,
   RefreshCw,
   AlertCircle,
-} from "lucide-react"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+} from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface InstagramPost {
-  id: string
-  username: string
-  verified: boolean
-  followers: string
-  profileImage: string
-  postImage: string
-  caption: string
-  likes: number
-  comments: Comment[]
-  timestamp: string
-  isLiked: boolean
-  isBookmarked: boolean
-  permalink: string
+  id: string;
+  username: string;
+  verified: boolean;
+  followers: string;
+  profileImage: string;
+  postImage: string;
+  caption: string;
+  likes: number;
+  comments: Comment[];
+  timestamp: string;
+  isLiked: boolean;
+  isBookmarked: boolean;
+  permalink: string;
 }
 
 interface Comment {
-  id: number
-  username: string
-  text: string
-  timestamp: string
+  id: number;
+  username: string;
+  text: string;
+  timestamp: string;
 }
 
 export function InstagramSection() {
-  const [posts, setPosts] = useState<InstagramPost[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [dataSource, setDataSource] = useState<string>("")
-  const [newComments, setNewComments] = useState<{ [key: string]: string }>({})
+  const [posts, setPosts] = useState<InstagramPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [dataSource, setDataSource] = useState<string>("");
+  const [newComments, setNewComments] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
-    fetchInstagramPosts()
-  }, [])
+    fetchInstagramPosts();
+  }, []);
 
   const fetchInstagramPosts = async () => {
     try {
-      setLoading(true)
-      setError(null)
+      setLoading(true);
+      setError(null);
 
       const response = await fetch("/api/instagram", {
         next: { revalidate: 3600 }, // Cache for 1 hour
-      })
+      });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch Instagram posts")
+        throw new Error("Failed to fetch Instagram posts");
       }
 
-      const result = await response.json()
-      setPosts(result.data)
-      setDataSource(result.source)
+      const result = await response.json();
+      setPosts(result.data);
+      setDataSource(result.source);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to load Instagram posts")
-      console.error("Error fetching Instagram posts:", err)
+      setError(
+        err instanceof Error ? err.message : "Failed to load Instagram posts",
+      );
+      console.error("Error fetching Instagram posts:", err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleLike = (postId: string) => {
     setPosts(
@@ -88,37 +90,49 @@ export function InstagramSection() {
             }
           : post,
       ),
-    )
-  }
+    );
+  };
 
   const handleBookmark = (postId: string) => {
-    setPosts(posts.map((post) => (post.id === postId ? { ...post, isBookmarked: !post.isBookmarked } : post)))
-  }
+    setPosts(
+      posts.map((post) =>
+        post.id === postId
+          ? { ...post, isBookmarked: !post.isBookmarked }
+          : post,
+      ),
+    );
+  };
 
   const handleComment = (postId: string) => {
-    const commentText = newComments[postId]?.trim()
-    if (!commentText) return
+    const commentText = newComments[postId]?.trim();
+    if (!commentText) return;
 
     const newComment: Comment = {
       id: Date.now(),
       username: "you",
       text: commentText,
       timestamp: "now",
-    }
+    };
 
-    setPosts(posts.map((post) => (post.id === postId ? { ...post, comments: [...post.comments, newComment] } : post)))
+    setPosts(
+      posts.map((post) =>
+        post.id === postId
+          ? { ...post, comments: [...post.comments, newComment] }
+          : post,
+      ),
+    );
 
-    setNewComments({ ...newComments, [postId]: "" })
-  }
+    setNewComments({ ...newComments, [postId]: "" });
+  };
 
   const handleCommentChange = (postId: string, value: string) => {
-    setNewComments({ ...newComments, [postId]: value })
-  }
+    setNewComments({ ...newComments, [postId]: value });
+  };
 
   const truncateCaption = (caption: string, maxLength = 150) => {
-    if (caption.length <= maxLength) return caption
-    return caption.substring(0, maxLength) + "..."
-  }
+    if (caption.length <= maxLength) return caption;
+    return caption.substring(0, maxLength) + "...";
+  };
 
   if (loading) {
     return (
@@ -136,7 +150,7 @@ export function InstagramSection() {
           </div>
         </div>
       </section>
-    )
+    );
   }
 
   return (
@@ -152,23 +166,23 @@ export function InstagramSection() {
           </p>
 
           {/* Data source indicator */}
-          {dataSource && (
-            <div className="mt-4">
-              {dataSource === "instagram-api" ? (
-                <Alert className="max-w-md mx-auto border-green-200 bg-green-50">
-                  <CheckCircle className="h-4 w-4 text-green-600" />
-                  <AlertDescription className="text-green-700">Live posts from Instagram</AlertDescription>
-                </Alert>
-              ) : (
-                <Alert className="max-w-md mx-auto border-yellow-200 bg-yellow-50">
-                  <AlertCircle className="h-4 w-4 text-yellow-600" />
-                  <AlertDescription className="text-yellow-700">
-                    Showing sample posts (Instagram API not configured)
-                  </AlertDescription>
-                </Alert>
-              )}
-            </div>
-          )}
+          {/* {dataSource && ( */}
+          {/*   <div className="mt-4"> */}
+          {/*     {dataSource === "instagram-api" ? ( */}
+          {/*       <Alert className="max-w-md mx-auto border-green-200 bg-green-50"> */}
+          {/*         <CheckCircle className="h-4 w-4 text-green-600" /> */}
+          {/*         <AlertDescription className="text-green-700">Live posts from Instagram</AlertDescription> */}
+          {/*       </Alert> */}
+          {/*     ) : ( */}
+          {/*       <Alert className="max-w-md mx-auto border-yellow-200 bg-yellow-50"> */}
+          {/*         <AlertCircle className="h-4 w-4 text-yellow-600" /> */}
+          {/*         <AlertDescription className="text-yellow-700"> */}
+          {/*           Showing sample posts (Instagram API not configured) */}
+          {/*         </AlertDescription> */}
+          {/*       </Alert> */}
+          {/*     )} */}
+          {/*   </div> */}
+          {/* )} */}
         </div>
 
         {error && (
@@ -177,7 +191,12 @@ export function InstagramSection() {
               <AlertCircle className="h-4 w-4 text-red-600" />
               <AlertDescription className="text-red-700">
                 {error}
-                <Button variant="outline" size="sm" onClick={fetchInstagramPosts} className="ml-2 bg-transparent">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={fetchInstagramPosts}
+                  className="ml-2 bg-transparent"
+                >
                   <RefreshCw className="h-3 w-3 mr-1" />
                   Retry
                 </Button>
@@ -188,7 +207,10 @@ export function InstagramSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {posts.map((post) => (
-            <Card key={post.id} className="overflow-hidden border border-gray-200">
+            <Card
+              key={post.id}
+              className="overflow-hidden border border-gray-200"
+            >
               {/* Post Header */}
               <div className="flex items-center justify-between p-4 border-b">
                 <div className="flex items-center space-x-3">
@@ -201,15 +223,28 @@ export function InstagramSection() {
                   />
                   <div>
                     <div className="flex items-center space-x-1">
-                      <span className="font-semibold text-sm">{post.username}</span>
-                      {post.verified && <CheckCircle className="h-4 w-4 text-blue-500 fill-current" />}
+                      <span className="font-semibold text-sm">
+                        {/* {post.username} */} SadhanaMusicHouse
+                      </span>
+                      {post.verified && (
+                        <CheckCircle className="h-4 w-4 text-blue-500 fill-current" />
+                      )}
                     </div>
-                    <span className="text-xs text-gray-500">{post.followers}</span>
+                    <span className="text-xs text-gray-500">
+                      {post.followers}
+                    </span>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Button asChild size="sm" className="bg-blue-500 hover:bg-blue-600 text-white">
-                    <Link href={`https://instagram.com/${post.username}`} target="_blank">
+                  <Button
+                    asChild
+                    size="sm"
+                    className="bg-blue-500 hover:bg-blue-600 text-white"
+                  >
+                    <Link
+                      href={`https://instagram.com/${post.username}`}
+                      target="_blank"
+                    >
                       View profile
                     </Link>
                   </Button>
@@ -240,12 +275,22 @@ export function InstagramSection() {
                       className="p-0 h-auto hover:bg-transparent"
                       onClick={() => handleLike(post.id)}
                     >
-                      <Heart className={`h-6 w-6 ${post.isLiked ? "fill-red-500 text-red-500" : "text-gray-700"}`} />
+                      <Heart
+                        className={`h-6 w-6 ${post.isLiked ? "fill-red-500 text-red-500" : "text-gray-700"}`}
+                      />
                     </Button>
-                    <Button variant="ghost" size="sm" className="p-0 h-auto hover:bg-transparent">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="p-0 h-auto hover:bg-transparent"
+                    >
                       <MessageCircle className="h-6 w-6 text-gray-700" />
                     </Button>
-                    <Button variant="ghost" size="sm" className="p-0 h-auto hover:bg-transparent">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="p-0 h-auto hover:bg-transparent"
+                    >
                       <Share className="h-6 w-6 text-gray-700" />
                     </Button>
                   </div>
@@ -263,20 +308,28 @@ export function InstagramSection() {
 
                 {/* Likes Count */}
                 <div className="mb-2">
-                  <span className="font-semibold text-sm">{post.likes} likes</span>
+                  <span className="font-semibold text-sm">
+                    {post.likes} likes
+                  </span>
                 </div>
 
                 {/* Caption */}
                 <div className="mb-3">
                   <span className="text-sm">
-                    <span className="font-semibold mr-2">{post.username}</span>
+                    <span className="font-semibold mr-2">
+                      {/* {post.username} */}SadhanaMusicHouse
+                    </span>
                     {truncateCaption(post.caption)}
                   </span>
                 </div>
 
                 {/* View more on Instagram */}
                 <div className="mb-3">
-                  <Link href={post.permalink} target="_blank" className="text-sm text-blue-500 hover:text-blue-600">
+                  <Link
+                    href={post.permalink}
+                    target="_blank"
+                    className="text-sm text-blue-500 hover:text-blue-600"
+                  >
                     View more on Instagram
                   </Link>
                 </div>
@@ -285,26 +338,34 @@ export function InstagramSection() {
                 <div className="space-y-2 mb-3">
                   {post.comments.slice(0, 2).map((comment) => (
                     <div key={comment.id} className="text-sm">
-                      <span className="font-semibold mr-2">{comment.username}</span>
+                      <span className="font-semibold mr-2">
+                        {comment.username}
+                      </span>
                       <span>{comment.text}</span>
-                      <span className="text-gray-500 ml-2 text-xs">{comment.timestamp}</span>
+                      <span className="text-gray-500 ml-2 text-xs">
+                        {comment.timestamp}
+                      </span>
                     </div>
                   ))}
                 </div>
 
                 {/* Timestamp */}
-                <div className="text-xs text-gray-500 mb-3 uppercase">{post.timestamp}</div>
+                <div className="text-xs text-gray-500 mb-3 uppercase">
+                  {post.timestamp}
+                </div>
 
                 {/* Add Comment */}
                 <div className="flex items-center space-x-2 pt-3 border-t">
                   <Input
                     placeholder="Add a comment..."
                     value={newComments[post.id] || ""}
-                    onChange={(e) => handleCommentChange(post.id, e.target.value)}
+                    onChange={(e) =>
+                      handleCommentChange(post.id, e.target.value)
+                    }
                     className="flex-1 border-none p-0 focus-visible:ring-0 text-sm"
                     onKeyPress={(e) => {
                       if (e.key === "Enter") {
-                        handleComment(post.id)
+                        handleComment(post.id);
                       }
                     }}
                   />
@@ -326,11 +387,15 @@ export function InstagramSection() {
         </div>
 
         <div className="text-center mt-8">
-          <div className="flex items-center justify-center space-x-4">
+          <div className="flex items-center flex-wrap gap-y-4 justify-center space-x-4">
             <Button asChild className="bg-red-600 hover:bg-red-700">
-              <Link href="https://instagram.com/villagemarket" target="_blank" rel="noopener noreferrer">
+              <Link
+                href="https://instagram.com/sadhana_music_house"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Instagram className="mr-2 h-4 w-4" />
-                Follow @villagemarket for more
+                Follow @SadhanaMusicHouse for more
               </Link>
             </Button>
             <Button variant="outline" onClick={fetchInstagramPosts}>
@@ -341,5 +406,5 @@ export function InstagramSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

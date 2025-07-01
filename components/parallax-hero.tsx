@@ -21,7 +21,7 @@ export function ParallaxHero() {
   return (
     <section
       ref={heroRef}
-      className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 py-20 overflow-hidden min-h-screen flex items-center"
+      className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 md:py-20 py-10 overflow-hidden min-h-screen flex items-center"
     >
       {/* Parallax Background Layers */}
 
@@ -61,44 +61,6 @@ export function ParallaxHero() {
         <div className="absolute top-1/3 left-16 w-12 h-12 bg-purple-600 rounded-full blur-sm"></div>
       </div>
 
-      {/* Layer 4 - Floating musical elements */}
-      <div
-        className="absolute inset-0"
-        style={{
-          transform: `translateY(${scrollY * 0.4}px)`,
-        }}
-      >
-        <div className="absolute top-24 right-16 opacity-20">
-          <div className="w-24 h-24 bg-white rounded-xl shadow-lg p-2 rotate-12">
-            <div className="w-full h-full bg-purple-100 rounded-lg flex items-center justify-center text-2xl">
-              🎸
-            </div>
-          </div>
-        </div>
-        <div className="absolute bottom-24 left-16 opacity-20">
-          <div className="w-20 h-20 bg-white rounded-xl shadow-lg p-2 -rotate-12">
-            <div className="w-full h-full bg-purple-100 rounded-lg flex items-center justify-center text-xl">
-              🎹
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Layer 5 - Musical note pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          transform: `translateY(${scrollY * 0.15}px) translateX(${scrollY * 0.05}px)`,
-        }}
-      >
-        <div className="absolute inset-0 text-6xl text-white">
-          <div className="absolute top-1/4 left-1/4">♪</div>
-          <div className="absolute top-1/3 right-1/4">♫</div>
-          <div className="absolute bottom-1/4 left-1/3">♪</div>
-          <div className="absolute bottom-1/3 right-1/3">♫</div>
-        </div>
-      </div>
-
       {/* Main Content - No parallax, stays in normal flow */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -114,7 +76,7 @@ export function ParallaxHero() {
                 🎵 Premium Musical Instruments
               </div>
               <h1
-                className="text-5xl lg:text-6xl font-bold leading-tight"
+                className="text-3xl lg:text-6xl font-bold leading-tight"
                 style={{
                   transform: `translateY(${scrollY * -0.05}px)`,
                 }}
@@ -125,7 +87,7 @@ export function ParallaxHero() {
                 </span>
               </h1>
               <p
-                className="text-xl text-purple-100 leading-relaxed max-w-lg"
+                className="md:text-xl text-sm text-purple-100 leading-relaxed max-w-lg"
                 style={{
                   transform: `translateY(${scrollY * -0.03}px)`,
                 }}
