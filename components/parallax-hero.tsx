@@ -21,46 +21,8 @@ export function ParallaxHero() {
   return (
     <section
       ref={heroRef}
-      className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 md:py-20 py-10 overflow-hidden min-h-screen flex items-center"
+      className="relative bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-900 md:py-20 py-10 overflow-hidden min-h-screen flex items-center"
     >
-      {/* Parallax Background Layers */}
-
-      {/* Layer 1 - Slowest moving background shapes */}
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          transform: `translateY(${scrollY * 0.1}px)`,
-        }}
-      >
-        <div className="absolute top-20 left-20 w-64 h-64 bg-purple-400 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-indigo-400 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-purple-500 rounded-full blur-2xl"></div>
-      </div>
-
-      {/* Layer 2 - Medium speed geometric shapes */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          transform: `translateY(${scrollY * 0.2}px)`,
-        }}
-      >
-        <div className="absolute top-32 right-1/4 w-32 h-32 bg-purple-300 rotate-45 blur-xl"></div>
-        <div className="absolute bottom-32 left-1/3 w-24 h-24 bg-indigo-400 rotate-12 blur-lg"></div>
-        <div className="absolute top-2/3 right-1/3 w-40 h-40 bg-purple-200 rounded-full blur-2xl"></div>
-      </div>
-
-      {/* Layer 3 - Faster moving decorative elements */}
-      <div
-        className="absolute inset-0 opacity-15"
-        style={{
-          transform: `translateY(${scrollY * 0.3}px)`,
-        }}
-      >
-        <div className="absolute top-16 left-1/2 w-16 h-16 bg-purple-500 rounded-full blur-sm"></div>
-        <div className="absolute bottom-16 right-1/2 w-20 h-20 bg-indigo-400 rounded-full blur-sm"></div>
-        <div className="absolute top-1/3 left-16 w-12 h-12 bg-purple-600 rounded-full blur-sm"></div>
-      </div>
-
       {/* Main Content - No parallax, stays in normal flow */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -186,7 +148,7 @@ export function ParallaxHero() {
             </div>
 
             <div
-              className="absolute -bottom-8 -right-4 z-5"
+              className="max-md:hidden absolute -bottom-8 -right-4 z-5"
               style={{
                 transform: `translateY(${scrollY * -0.15}px) rotate(${scrollY * 0.015}deg)`,
               }}
@@ -198,23 +160,6 @@ export function ParallaxHero() {
                 <div className="mt-2 text-center">
                   <p className="text-sm font-medium">Drum Kits</p>
                   <p className="text-purple-600 font-bold text-sm">From $699</p>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="absolute top-1/2 -right-8 z-5"
-              style={{
-                transform: `translateY(${scrollY * -0.25}px) rotate(${scrollY * -0.01}deg)`,
-              }}
-            >
-              <div className="bg-white p-3 rounded-xl shadow-lg transform rotate-6 hover:rotate-0 transition-transform duration-300">
-                <div className="w-24 h-24 bg-purple-100 rounded-lg flex items-center justify-center text-3xl">
-                  🎤
-                </div>
-                <div className="mt-2 text-center">
-                  <p className="text-sm font-medium">Audio Gear</p>
-                  <p className="text-purple-600 font-bold text-sm">From $99</p>
                 </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Clock, Calendar, MapPin, Phone, Sunrise, Sunset } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Clock, Calendar, MapPin, Phone, Sunrise, Sunset } from "lucide-react";
 
 const businessHours = [
   { day: "Monday", hours: "8:00 AM - 6:00 PM", isToday: false, isOpen: true },
@@ -9,37 +9,43 @@ const businessHours = [
   { day: "Thursday", hours: "8:00 AM - 6:00 PM", isToday: false, isOpen: true },
   { day: "Friday", hours: "8:00 AM - 7:00 PM", isToday: false, isOpen: true },
   { day: "Saturday", hours: "9:00 AM - 5:00 PM", isToday: false, isOpen: true },
-]
+];
 
 export function BusinessHours() {
-  const currentTime = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+  const currentTime = new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   const currentDate = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
-  })
-  const isOpen = true // You can implement actual logic to check if shop is open
-  const todaySchedule = businessHours.find((schedule) => schedule.isToday)
+  });
+  const isOpen = true; // You can implement actual logic to check if shop is open
+  const todaySchedule = businessHours.find((schedule) => schedule.isToday);
 
   return (
     <Card className="overflow-hidden bg-gradient-to-br from-white to-red-50 border-red-100 shadow-lg">
       <CardHeader className="bg-gradient-to-r from-red-600 to-red-700 text-white pb-8">
         <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center space-x-3 text-2xl">
+          {" "}
+          <CardTitle className="flex items-center space-x-3 md:text-2xl text-xl">
             <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
               <Clock className="h-6 w-6" />
             </div>
             <span>Business Hours</span>
           </CardTitle>
           <div className="text-right">
-            <div className="text-sm opacity-90">{currentDate}</div>
-            <div className="text-lg font-semibold">{currentTime}</div>
+            <div className="md:text-sm text-xsopacity-90">{currentDate}</div>
+            <div className="md:text-lg text-sm font-semibold">
+              {currentTime}
+            </div>
           </div>
         </div>
       </CardHeader>
 
-      <CardContent className="p-8 space-y-8">
+      <CardContent className="p-4 space-y-8">
         {/* Current Status */}
         <div className="relative">
           <div
@@ -51,8 +57,14 @@ export function BusinessHours() {
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <div className={`relative p-3 rounded-full ${isOpen ? "bg-green-500" : "bg-red-500"}`}>
-                  {isOpen ? <Sunrise className="h-6 w-6 text-white" /> : <Sunset className="h-6 w-6 text-white" />}
+                <div
+                  className={`relative p-3 rounded-full ${isOpen ? "bg-green-500" : "bg-red-500"}`}
+                >
+                  {isOpen ? (
+                    <Sunrise className="h-6 w-6 text-white" />
+                  ) : (
+                    <Sunset className="h-6 w-6 text-white" />
+                  )}
                   <div
                     className={`absolute -top-1 -right-1 w-4 h-4 rounded-full animate-pulse ${
                       isOpen ? "bg-green-400" : "bg-red-400"
@@ -60,18 +72,26 @@ export function BusinessHours() {
                   ></div>
                 </div>
                 <div>
-                  <h3 className={`text-xl font-bold ${isOpen ? "text-green-800" : "text-red-800"}`}>
+                  <h3
+                    className={`md:text-xl text-lg font-bold ${isOpen ? "text-green-800" : "text-red-800"}`}
+                  >
                     {isOpen ? "We're Open!" : "Currently Closed"}
                   </h3>
-                  <p className={`text-sm ${isOpen ? "text-green-600" : "text-red-600"}`}>
-                    {todaySchedule ? `Today: ${todaySchedule.hours}` : "Check hours below"}
+                  <p
+                    className={`md:text-sm text-xs ${isOpen ? "text-green-600" : "text-red-600"}`}
+                  >
+                    {todaySchedule
+                      ? `Today: ${todaySchedule.hours}`
+                      : "Check hours below"}
                   </p>
                 </div>
               </div>
               <Badge
                 variant={isOpen ? "default" : "secondary"}
-                className={`px-4 py-2 text-sm font-semibold ${
-                  isOpen ? "bg-green-500 hover:bg-green-600 text-white" : "bg-red-500 hover:bg-red-600 text-white"
+                className={`px-4 py-2 md:text-sm text-xs font-semibold ${
+                  isOpen
+                    ? "bg-green-500 hover:bg-green-600 text-white"
+                    : "bg-red-500 hover:bg-red-600 text-white"
                 }`}
               >
                 {isOpen ? "OPEN" : "CLOSED"}
@@ -104,22 +124,35 @@ export function BusinessHours() {
                       <Calendar className="h-4 w-4 text-red-600" />
                     </div>
                   )}
-                  <span className={`font-semibold text-lg ${schedule.isToday ? "text-red-800" : "text-gray-700"}`}>
-                    {schedule.day}
-                  </span>
+                  {!schedule.isToday && (
+                    <span
+                      className={`font-semibold text-lg ${schedule.isToday ? "text-red-800" : "text-gray-700"}`}
+                    >
+                      {schedule.day}
+                    </span>
+                  )}
                   {schedule.isToday && (
-                    <Badge variant="outline" className="text-xs bg-red-100 text-red-700 border-red-300">
+                    <Badge
+                      variant="outline"
+                      className="text-xs bg-red-100 text-red-700 border-red-300"
+                    >
                       TODAY
                     </Badge>
                   )}
                 </div>
                 <div className="text-right">
-                  <span className={`font-medium text-lg ${schedule.isToday ? "text-red-700" : "text-gray-600"}`}>
+                  <span
+                    className={`font-medium text-lg ${schedule.isToday ? "text-red-700" : "text-gray-600"}`}
+                  >
                     {schedule.hours}
                   </span>
                   <div className="flex items-center justify-end space-x-1 mt-1">
-                    <div className={`w-2 h-2 rounded-full ${schedule.isOpen ? "bg-green-400" : "bg-gray-300"}`}></div>
-                    <span className="text-xs text-gray-500">{schedule.isOpen ? "Open" : "Closed"}</span>
+                    <div
+                      className={`w-2 h-2 rounded-full ${schedule.isOpen ? "bg-green-400" : "bg-gray-300"}`}
+                    ></div>
+                    <span className="text-xs text-gray-500">
+                      {schedule.isOpen ? "Open" : "Closed"}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -160,11 +193,15 @@ export function BusinessHours() {
           </div>
 
           <div className="text-center p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-            <p className="text-sm text-yellow-800 font-medium">⚠️ Holiday Hours May Vary</p>
-            <p className="text-xs text-yellow-600 mt-1">Please call ahead during holidays to confirm our hours</p>
+            <p className="text-sm text-yellow-800 font-medium">
+              ⚠️ Holiday Hours May Vary
+            </p>
+            <p className="text-xs text-yellow-600 mt-1">
+              Please call ahead during holidays to confirm our hours
+            </p>
           </div>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowLeft, Share2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { OrderForm } from "@/components/order-form";
 import { ShareButton } from "@/components/share-button";
 import { featuredProducts } from "@/data/product";
@@ -30,13 +29,13 @@ export default async function ProductPage({
           <div className="flex items-center justify-between">
             <Link
               href="/"
-              className="flex items-center space-x-2 text-purple-600 hover:text-purple-700"
+              className="flex items-center space-x-2 text-purple-600 hover:text-purple-700 max-md:text-sm"
             >
               <ArrowLeft className="h-5 w-5" />
               <span>Back to Shop</span>
             </Link>
             <div>
-              <h1 className="text-2xl font-bold text-purple-600">
+              <h1 className="md:text-2xl text-xl font-bold text-purple-600">
                 Sadhana Music House
               </h1>
             </div>
@@ -70,9 +69,6 @@ export default async function ProductPage({
               </div>
               <p className="text-3xl font-bold text-purple-600 mb-4">
                 ₹{product.price}{" "}
-                {/* <span className="text-sm font-normal text-muted-foreground"> */}
-                {/*   {product.unit} */}
-                {/* </span> */}
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 {product.description}

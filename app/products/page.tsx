@@ -23,212 +23,12 @@ import {
 import { Navbar } from "@/components/navbar";
 import { Search, Grid, List } from "lucide-react";
 import { ShareButton } from "@/components/share-button";
+import { featuredProducts } from "@/data/product";
 
-const allProducts = [
-  {
-    id: 1,
-    name: "Yamaha FG830 Acoustic Guitar",
-    description: "Solid spruce top with rosewood back and sides",
-    price: 299.99,
-    originalPrice: 349.99,
-    category: "Guitars",
-    brand: "Yamaha",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: true,
-    isNew: false,
-    isSale: true,
-    rating: 4.8,
-  },
-  {
-    id: 2,
-    name: "Roland TD-17KVX Electronic Drum Kit",
-    description: "Professional V-Drums with mesh heads",
-    price: 1299.99,
-    category: "Drums",
-    brand: "Roland",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: true,
-    isNew: true,
-    isSale: false,
-    rating: 4.9,
-  },
-  {
-    id: 3,
-    name: "Korg Minilogue XD Synthesizer",
-    description: "Analog synthesizer with digital effects",
-    price: 649.99,
-    category: "Keyboards",
-    brand: "Korg",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: true,
-    isNew: false,
-    isSale: false,
-    rating: 4.7,
-  },
-  {
-    id: 4,
-    name: "Shure SM58 Dynamic Microphone",
-    description: "Industry standard vocal microphone",
-    price: 99.99,
-    category: "Audio",
-    brand: "Shure",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: true,
-    isNew: false,
-    isSale: false,
-    rating: 4.9,
-  },
-  {
-    id: 5,
-    name: "Fender Player Stratocaster",
-    description: "Classic electric guitar with modern features",
-    price: 849.99,
-    category: "Guitars",
-    brand: "Fender",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: false,
-    isNew: false,
-    isSale: false,
-    rating: 4.6,
-  },
-  {
-    id: 6,
-    name: "Pearl Export Series Drum Kit",
-    description: "5-piece acoustic drum set with cymbals",
-    price: 699.99,
-    originalPrice: 799.99,
-    category: "Drums",
-    brand: "Pearl",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: true,
-    isNew: false,
-    isSale: true,
-    rating: 4.5,
-  },
-  {
-    id: 7,
-    name: "Nord Stage 3 88-Key",
-    description: "Professional stage piano and synthesizer",
-    price: 3999.99,
-    category: "Keyboards",
-    brand: "Nord",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: true,
-    isNew: true,
-    isSale: false,
-    rating: 4.8,
-  },
-  {
-    id: 8,
-    name: "Audio-Technica AT2020 Condenser Mic",
-    description: "Studio condenser microphone",
-    price: 149.99,
-    category: "Audio",
-    brand: "Audio-Technica",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: true,
-    isNew: false,
-    isSale: false,
-    rating: 4.7,
-  },
-  {
-    id: 9,
-    name: "Gibson Les Paul Standard",
-    description: "Iconic electric guitar with humbucker pickups",
-    price: 2499.99,
-    category: "Guitars",
-    brand: "Gibson",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: true,
-    isNew: false,
-    isSale: false,
-    rating: 4.9,
-  },
-  {
-    id: 10,
-    name: "Focusrite Scarlett 2i2 Audio Interface",
-    description: "USB audio interface for home recording",
-    price: 179.99,
-    category: "Audio",
-    brand: "Focusrite",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: true,
-    isNew: false,
-    isSale: false,
-    rating: 4.6,
-  },
-  {
-    id: 11,
-    name: "Taylor 814ce Acoustic Guitar",
-    description: "Grand Auditorium with Sitka spruce top",
-    price: 3299.99,
-    category: "Guitars",
-    brand: "Taylor",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: true,
-    isNew: true,
-    isSale: false,
-    rating: 4.9,
-  },
-  {
-    id: 12,
-    name: "Moog Subsequent 37 Synthesizer",
-    description: "Analog synthesizer with 37 keys",
-    price: 1599.99,
-    originalPrice: 1799.99,
-    category: "Keyboards",
-    brand: "Moog",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: true,
-    isNew: false,
-    isSale: true,
-    rating: 4.8,
-  },
-  {
-    id: 13,
-    name: "DW Performance Series Drum Kit",
-    description: "Professional maple shell drum set",
-    price: 1899.99,
-    category: "Drums",
-    brand: "DW",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: true,
-    isNew: false,
-    isSale: false,
-    rating: 4.7,
-  },
-  {
-    id: 14,
-    name: "Neumann TLM 103 Condenser Mic",
-    description: "Large diaphragm studio microphone",
-    price: 1199.99,
-    category: "Audio",
-    brand: "Neumann",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: true,
-    isNew: false,
-    isSale: false,
-    rating: 4.9,
-  },
-  {
-    id: 15,
-    name: "Martin D-28 Acoustic Guitar",
-    description: "Dreadnought with East Indian rosewood",
-    price: 3199.99,
-    category: "Guitars",
-    brand: "Martin",
-    image: "/placeholder.svg?height=200&width=200",
-    inStock: false,
-    isNew: false,
-    isSale: false,
-    rating: 4.8,
-  },
-];
-
+const allProducts = featuredProducts;
 export default function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedBrand, setSelectedBrand] = useState("all");
   const [sortBy, setSortBy] = useState("name");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
@@ -236,23 +36,16 @@ export default function ProductsPage() {
     "all",
     ...Array.from(new Set(allProducts.map((p) => p.category))),
   ];
-  const brands = [
-    "all",
-    ...Array.from(new Set(allProducts.map((p) => p.brand))),
-  ];
 
   const filteredAndSortedProducts = useMemo(() => {
     const filtered = allProducts.filter((product) => {
       const matchesSearch =
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.brand.toLowerCase().includes(searchTerm.toLowerCase());
+        product.description.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory =
         selectedCategory === "all" || product.category === selectedCategory;
-      const matchesBrand =
-        selectedBrand === "all" || product.brand === selectedBrand;
 
-      return matchesSearch && matchesCategory && matchesBrand;
+      return matchesSearch && matchesCategory;
     });
 
     // Sort products
@@ -262,8 +55,6 @@ export default function ProductsPage() {
           return a.price - b.price;
         case "price-high":
           return b.price - a.price;
-        case "rating":
-          return b.rating - a.rating;
         case "newest":
           return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0);
         default:
@@ -272,7 +63,7 @@ export default function ProductsPage() {
     });
 
     return filtered;
-  }, [searchTerm, selectedCategory, selectedBrand, sortBy]);
+  }, [searchTerm, selectedCategory, sortBy]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -307,19 +98,6 @@ export default function ProductsPage() {
                   {categories.map((category) => (
                     <SelectItem key={category} value={category}>
                       {category === "all" ? "All Categories" : category}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              <Select value={selectedBrand} onValueChange={setSelectedBrand}>
-                <SelectTrigger className="w-40">
-                  <SelectValue placeholder="Brand" />
-                </SelectTrigger>
-                <SelectContent>
-                  {brands.map((brand) => (
-                    <SelectItem key={brand} value={brand}>
-                      {brand === "all" ? "All Brands" : brand}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -384,7 +162,6 @@ export default function ProductsPage() {
                 onClick={() => {
                   setSearchTerm("");
                   setSelectedCategory("all");
-                  setSelectedBrand("all");
                 }}
               >
                 Clear All Filters
@@ -453,9 +230,9 @@ export default function ProductsPage() {
                         >
                           {product.category}
                         </Badge>
-                        <div className="text-right text-xs text-gray-500">
-                          ⭐ {product.rating}
-                        </div>
+                        {/* <div className="text-right text-xs text-gray-500"> */}
+                        {/*   ⭐ {product.rating} */}
+                        {/* </div> */}
                       </div>
                       <CardTitle
                         className={`mb-2 group-hover:text-purple-600 transition-colors ${
@@ -467,9 +244,9 @@ export default function ProductsPage() {
                       <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
                         {product.description}
                       </p>
-                      <p className="text-xs text-gray-500 mb-2">
-                        Brand: {product.brand}
-                      </p>
+                      {/* <p className="text-xs text-gray-500 mb-2"> */}
+                      {/*   Brand: {product.brand} */}
+                      {/* </p> */}
                       <div className="flex items-center space-x-2">
                         <p className="text-2xl font-bold text-purple-600">
                           ₹{product.price}

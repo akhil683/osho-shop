@@ -224,7 +224,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h4 className="text-xl font-bold mb-4">Harmony Hub</h4>
+              <h4 className="text-xl font-bold mb-4">Sadhana Music House</h4>
               <p className="text-gray-400 mb-4">
                 Your premier destination for musical instruments and audio
                 equipment.
