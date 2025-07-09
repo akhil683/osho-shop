@@ -1,3 +1,15 @@
+export interface TProduct {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  originalPrice?: number;
+  category: string;
+  image: string;
+  inStock: boolean;
+  isNew: boolean;
+  isSale: boolean;
+}
 export const featuredProducts = [
   {
     id: 1,

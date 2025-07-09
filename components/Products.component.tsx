@@ -22,10 +22,13 @@ import {
 } from "@/components/ui/select";
 import { Search, Grid, List } from "lucide-react";
 import { ShareButton } from "@/components/share-button";
-import { featuredProducts } from "@/data/product";
+import { TProduct } from "@/data/product";
 
-const allProducts = featuredProducts;
-export default function ProductsPage() {
+export default function ProductsPage({
+  products: allProducts,
+}: {
+  products: TProduct[];
+}) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortBy, setSortBy] = useState("name");
@@ -37,7 +40,7 @@ export default function ProductsPage() {
   ];
 
   const filteredAndSortedProducts = useMemo(() => {
-    const filtered = allProducts.filter((product) => {
+    const filtered = allProducts.filter((product: TProduct) => {
       const matchesSearch =
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -48,7 +51,7 @@ export default function ProductsPage() {
     });
 
     // Sort products
-    filtered.sort((a, b) => {
+    filtered.sort((a: TProduct, b: TProduct) => {
       switch (sortBy) {
         case "price-low":
           return a.price - b.price;
@@ -172,7 +175,7 @@ export default function ProductsPage() {
                   : "grid-cols-1"
               }`}
             >
-              {filteredAndSortedProducts.map((product) => (
+              {filteredAndSortedProducts.map((product: TProduct) => (
                 <Card
                   key={product.id}
                   className={`group overflow-hidden hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm ${
@@ -227,9 +230,6 @@ export default function ProductsPage() {
                         >
                           {product.category}
                         </Badge>
-                        {/* <div className="text-right text-xs text-gray-500"> */}
-                        {/*   ⭐ {product.rating} */}
-                        {/* </div> */}
                       </div>
                       <CardTitle
                         className={`mb-2 group-hover:text-purple-600 transition-colors ${
@@ -241,9 +241,6 @@ export default function ProductsPage() {
                       <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
                         {product.description}
                       </p>
-                      {/* <p className="text-xs text-gray-500 mb-2"> */}
-                      {/*   Brand: {product.brand} */}
-                      {/* </p> */}
                       <div className="flex items-center space-x-2">
                         <p className="text-2xl font-bold text-purple-600">
                           ₹{product.price}

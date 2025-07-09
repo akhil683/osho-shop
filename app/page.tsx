@@ -13,19 +13,77 @@ import { InstagramSection } from "@/components/instagram-section";
 import { BusinessHours } from "@/components/business-hours";
 import { PaymentSection } from "@/components/payment-section";
 import { ParallaxHero } from "@/components/parallax-hero";
-import { Navbar } from "@/components/navbar";
-import { ShareButton } from "@/components/share-button";
 import { featuredProducts } from "@/data/product";
+import { ShareButton } from "@/components/share-button";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Navbar */}
-      <Navbar />
-
       {/* Hero Section */}
       <ParallaxHero />
 
+      {/* Categories Section */}
+      <section className="py-16 bg-gradient-to-b from-purple-50 to-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Shop by Category
+            </h2>
+            <p className="text-xl text-gray-600">
+              Find the perfect instrument for your musical journey
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                name: "Guitars",
+                icon: "🎸",
+                count: "150+ items",
+                color: "from-red-400 to-red-600",
+              },
+              {
+                name: "Keyboards",
+                icon: "🎹",
+                count: "80+ items",
+                color: "from-blue-400 to-blue-600",
+              },
+              {
+                name: "Drums",
+                icon: "🥁",
+                count: "60+ items",
+                color: "from-green-400 to-green-600",
+              },
+              {
+                name: "Audio Equipment",
+                icon: "🎤",
+                count: "120+ items",
+                color: "from-purple-400 to-purple-600",
+              },
+            ].map((category) => (
+              <Link
+                key={category.name}
+                href={`/category/${category.name}`}
+                className="group block"
+              >
+                <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 overflow-hidden">
+                  <CardContent className="p-0">
+                    <div
+                      className={`bg-gradient-to-br ${category.color} p-8 text-white text-center`}
+                    >
+                      <div className="text-4xl mb-4">{category.icon}</div>
+                      <h3 className="text-xl font-bold mb-2">
+                        {category.name}
+                      </h3>
+                      <p className="text-white/80">{category.count}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
       {/* Featured Products */}
       <section className="py-16 bg-gradient-to-b from-white to-purple-50">
         <div className="container mx-auto px-4">
@@ -139,69 +197,6 @@ export default function HomePage() {
                 <span className="ml-2">→</span>
               </Link>
             </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Categories Section */}
-      <section className="py-16 bg-gradient-to-b from-purple-50 to-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Shop by Category
-            </h2>
-            <p className="text-xl text-gray-600">
-              Find the perfect instrument for your musical journey
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                name: "Guitars",
-                icon: "🎸",
-                count: "150+ items",
-                color: "from-red-400 to-red-600",
-              },
-              {
-                name: "Keyboards",
-                icon: "🎹",
-                count: "80+ items",
-                color: "from-blue-400 to-blue-600",
-              },
-              {
-                name: "Drums",
-                icon: "🥁",
-                count: "60+ items",
-                color: "from-green-400 to-green-600",
-              },
-              {
-                name: "Audio Equipment",
-                icon: "🎤",
-                count: "120+ items",
-                color: "from-purple-400 to-purple-600",
-              },
-            ].map((category) => (
-              <Link
-                key={category.name}
-                href={`/category/${category.name.toLowerCase()}`}
-                className="group block"
-              >
-                <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 overflow-hidden">
-                  <CardContent className="p-0">
-                    <div
-                      className={`bg-gradient-to-br ${category.color} p-8 text-white text-center`}
-                    >
-                      <div className="text-4xl mb-4">{category.icon}</div>
-                      <h3 className="text-xl font-bold mb-2">
-                        {category.name}
-                      </h3>
-                      <p className="text-white/80">{category.count}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
           </div>
         </div>
       </section>

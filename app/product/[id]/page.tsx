@@ -26,20 +26,13 @@ export default async function ProductPage({
       {/* Header */}
       <header className="border-b bg-white shadow-sm">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link
-              href="/"
-              className="flex items-center space-x-2 text-purple-600 hover:text-purple-700 max-md:text-sm"
-            >
-              <ArrowLeft className="h-5 w-5" />
-              <span>Back to Shop</span>
-            </Link>
-            <div>
-              <h1 className="md:text-2xl text-xl font-bold text-purple-600">
-                Sadhana Music House
-              </h1>
-            </div>
-          </div>
+          <Link
+            href="/"
+            className="flex items-center space-x-2 text-purple-600 hover:text-purple-700 max-md:text-sm"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            <span>Back to Shop</span>
+          </Link>
         </div>
       </header>
 
