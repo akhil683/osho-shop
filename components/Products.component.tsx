@@ -36,7 +36,7 @@ export default function ProductsPage({
 
   const categories = [
     "all",
-    ...Array.from(new Set(allProducts.map((p) => p.category))),
+    ...Array.from(new Set(allProducts.map((p) => p.subCategory))),
   ];
 
   const filteredAndSortedProducts = useMemo(() => {

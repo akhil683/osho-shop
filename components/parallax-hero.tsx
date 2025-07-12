@@ -107,12 +107,7 @@ export function ParallaxHero() {
           {/* Right Content - Instrument Showcase with Parallax */}
           <div className="relative">
             {/* Main Featured Instrument */}
-            <div
-              className="relative z-10"
-              style={{
-                transform: `translateY(${scrollY * -0.1}px) rotate(${scrollY * 0.01}deg)`,
-              }}
-            >
+            <div className="relative z-10">
               <div className="bg-white p-4 rounded-2xl shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-300">
                 <Image
                   src={heroImage}
@@ -131,12 +126,7 @@ export function ParallaxHero() {
             </div>
 
             {/* Floating Instrument Cards with Different Parallax Speeds */}
-            <div
-              className="absolute -top-4 -left-4 z-5"
-              style={{
-                transform: `translateY(${scrollY * -0.2}px) rotate(${scrollY * -0.02}deg)`,
-              }}
-            >
+            <div className="absolute -top-4 -left-4 z-5">
               <div className="bg-white p-3 rounded-xl shadow-lg transform -rotate-12 hover:rotate-0 transition-transform duration-300">
                 <div className="w-24 h-24 bg-purple-100 rounded-lg flex items-center justify-center text-3xl">
                   🎹
@@ -148,12 +138,7 @@ export function ParallaxHero() {
               </div>
             </div>
 
-            <div
-              className="max-md:hidden absolute -bottom-8 -right-4 z-5"
-              style={{
-                transform: `translateY(${scrollY * -0.15}px) rotate(${scrollY * 0.015}deg)`,
-              }}
-            >
+            <div className="max-md:hidden absolute -bottom-8 -right-4 z-5">
               <div className="bg-white p-3 rounded-xl shadow-lg transform rotate-12 hover:rotate-0 transition-transform duration-300">
                 <div className="w-24 h-24 bg-purple-100 rounded-lg flex items-center justify-center text-3xl">
                   🥁
@@ -166,12 +151,7 @@ export function ParallaxHero() {
             </div>
 
             {/* Decorative Elements with Parallax */}
-            <div
-              className="absolute top-0 right-0 w-32 h-32 bg-yellow-300 rounded-full opacity-20 blur-2xl"
-              style={{
-                transform: `translateY(${scrollY * -0.3}px) scale(${1 + scrollY * 0.0005})`,
-              }}
-            ></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-300 rounded-full blur-2xl"></div>
             <div
               className="absolute bottom-0 left-0 w-24 h-24 bg-purple-300 rounded-full opacity-30 blur-xl"
               style={{
@@ -182,31 +162,20 @@ export function ParallaxHero() {
         </div>
 
         {/* Trust Indicators with Parallax */}
-        <div
-          className="mt-20 pt-12 border-t border-white/20"
-          style={{
-            transform: `translateY(${scrollY * -0.05}px)`,
-          }}
-        >
+        <div className="mt-20 pt-12 border-t border-white/20">
           <div className="text-center mb-8">
             <p className="text-purple-200 font-medium">
               Trusted by musicians worldwide
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
             {[
               { icon: "🎸", text: "Premium Guitars" },
               { icon: "🎹", text: "Pro Keyboards" },
               { icon: "🥁", text: "Quality Drums" },
               { icon: "🎤", text: "Studio Audio" },
             ].map((item, index) => (
-              <div
-                key={index}
-                className="text-center text-white"
-                style={{
-                  transform: `translateY(${scrollY * (-0.02 - index * 0.01)}px)`,
-                }}
-              >
+              <div key={index} className="text-center text-white">
                 <div className="bg-white/10 rounded-lg p-4 mb-2 backdrop-blur-sm">
                   <span className="text-2xl">{item.icon}</span>
                 </div>

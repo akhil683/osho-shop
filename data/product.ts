@@ -5,6 +5,7 @@ export interface TProduct {
   price: number;
   originalPrice?: number;
   category: string;
+  subCategory: string;
   image: string;
   inStock: boolean;
   isNew: boolean;
@@ -18,6 +19,7 @@ export const featuredProducts = [
     price: 299.99,
     originalPrice: 349.99,
     category: "Guitars",
+    subCategory: "pingk",
     image: "https://getwallpapers.com/wallpaper/full/1/b/9/402511.jpg",
     inStock: true,
     isNew: false,
@@ -29,6 +31,7 @@ export const featuredProducts = [
     description: "Professional V-Drums with mesh heads",
     price: 1299.99,
     category: "Drums",
+    subCategory: "pingk",
     image:
       "https://media.sweetwater.com/api/i/q-85__ha-500bb87a9486cc2b__hmac-4fd645729b15e978fc042e5ad69d3f58076e0ac3/images/items/750/TD17KVX2Set-large.jpg",
     inStock: true,
@@ -41,6 +44,7 @@ export const featuredProducts = [
     description: "Analog synthesizer with digital effects",
     price: 649.99,
     category: "Keyboards",
+    subCategory: "pingk",
     image: "https://getwallpapers.com/wallpaper/full/1/b/9/402511.jpg",
     inStock: true,
     isNew: false,
@@ -52,6 +56,7 @@ export const featuredProducts = [
     description: "Industry standard vocal microphone",
     price: 99.99,
     category: "Audio",
+    subCategory: "pingk",
     image: "https://getwallpapers.com/wallpaper/full/1/b/9/402511.jpg",
     inStock: true,
     isNew: false,
@@ -63,6 +68,7 @@ export const featuredProducts = [
     description: "Classic electric guitar with modern features",
     price: 849.99,
     category: "Guitars",
+    subCategory: "pingk",
     image: "https://getwallpapers.com/wallpaper/full/1/b/9/402511.jpg",
     inStock: false,
     isNew: false,
@@ -75,6 +81,7 @@ export const featuredProducts = [
     price: 699.99,
     originalPrice: 799.99,
     category: "Drums",
+    subCategory: "pingk",
     image: "https://getwallpapers.com/wallpaper/full/1/b/9/402511.jpg",
     inStock: true,
     isNew: false,
@@ -86,6 +93,7 @@ export const featuredProducts = [
     description: "Professional stage piano and synthesizer",
     price: 3999.99,
     category: "Keyboards",
+    subCategory: "pingk",
     image: "https://getwallpapers.com/wallpaper/full/1/b/9/402511.jpg",
     inStock: true,
     isNew: true,
@@ -97,6 +105,7 @@ export const featuredProducts = [
     description: "Studio condenser microphone",
     price: 149.99,
     category: "Audio",
+    subCategory: "pingk",
     image: "https://getwallpapers.com/wallpaper/full/1/b/9/402511.jpg",
     inStock: true,
     isNew: false,
@@ -108,6 +117,7 @@ export const featuredProducts = [
     description: "Iconic electric guitar with humbucker pickups",
     price: 2499.99,
     category: "Guitars",
+    subCategory: "pingk",
     image: "https://getwallpapers.com/wallpaper/full/1/b/9/402511.jpg",
     inStock: true,
     isNew: false,
@@ -119,6 +129,7 @@ export const featuredProducts = [
     description: "USB audio interface for home recording",
     price: 179.99,
     category: "Audio",
+    subCategory: "pingk",
     image: "https://getwallpapers.com/wallpaper/full/1/b/9/402511.jpg",
     inStock: true,
     isNew: false,

@@ -14,7 +14,6 @@ export default async function CategoryPage({
   if (filtered.length === 0) {
     return null;
   }
-  console.log(filtered);
   return (
     <section>
       <ProductsPage products={filtered} />
