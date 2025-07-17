@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -22,22 +22,31 @@ import {
 } from "@/components/ui/select";
 import { Search, Grid, List } from "lucide-react";
 import { ShareButton } from "@/components/share-button";
-import { featuredProducts } from "@/data/product";
+import { getAllProducts } from "@/lib/actions/product";
+import { TProduct } from "@/data/product";
 
-const allProducts = featuredProducts;
 export default function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortBy, setSortBy] = useState("name");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [products, setProducts] = useState<TProduct[]>([]);
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const fetchedProducts = await getAllProducts();
+      setProducts(fetchedProducts);
+      console.log(fetchedProducts);
+    };
+    fetchProducts();
+  }, []);
   const categories = [
     "all",
-    ...Array.from(new Set(allProducts.map((p) => p.category))),
+    ...Array.from(new Set(products.map((p) => p.category))),
   ];
 
   const filteredAndSortedProducts = useMemo(() => {
-    const filtered = allProducts.filter((product) => {
+    const filtered = products.filter((product) => {
       const matchesSearch =
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -62,7 +71,7 @@ export default function ProductsPage() {
     });
 
     return filtered;
-  }, [searchTerm, selectedCategory, sortBy]);
+  }, [searchTerm, selectedCategory, sortBy, products]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -137,7 +146,7 @@ export default function ProductsPage() {
 
           {/* Results Count */}
           <div className="mt-4 text-gray-600">
-            Showing {filteredAndSortedProducts.length} of {allProducts.length}{" "}
+            Showing {filteredAndSortedProducts.length} of {products.length}{" "}
             products
           </div>
         </div>
@@ -174,7 +183,7 @@ export default function ProductsPage() {
             >
               {filteredAndSortedProducts.map((product) => (
                 <Card
-                  key={product.id}
+                  key={product.imageUrl}
                   className={`group overflow-hidden hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm ${
                     viewMode === "list" ? "flex flex-row" : ""
                   }`}
@@ -184,7 +193,7 @@ export default function ProductsPage() {
                   >
                     <div className="relative overflow-hidden">
                       <Image
-                        src={product.image || "/placeholder.svg"}
+                        src={product.imageUrl || "/placeholder.svg"}
                         alt={product.name}
                         width={200}
                         height={200}

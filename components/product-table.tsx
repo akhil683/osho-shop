@@ -9,13 +9,32 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { TProduct, featuredProducts } from "@/data/product";
 import Image from "next/image";
+import { getAllProducts, deleteProduct } from "@/lib/actions/product";
+import { useEffect, useState } from "react";
+
+interface Product {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+}
 
 export default function ProductTable() {
-  const handleDelete = (id: number) => {
-    console.log(`Delete product with ID: ${id}`);
-    // Implement actual delete logic here (e.g., API call)
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const fetchedProducts = await getAllProducts();
+      setProducts(fetchedProducts);
+    };
+    fetchProducts();
+  }, []);
+
+  const handleDelete = async (id: string) => {
+    await deleteProduct(id);
+    setProducts(products.filter((product) => product._id !== id));
   };
 
   return (
@@ -28,17 +47,16 @@ export default function ProductTable() {
             <TableHead>Image</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Price</TableHead>
-            <TableHead>Category</TableHead>
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {featuredProducts.map((product: TProduct) => (
-            <TableRow key={product.id}>
-              <TableCell>{product.id}</TableCell>
+          {products.map((product: Product, index: number) => (
+            <TableRow key={product._id}>
+              <TableCell>{index + 1}</TableCell>
               <TableCell>
                 <Image
-                  src={product.image}
+                  src={product.imageUrl}
                   alt={product.name}
                   width={50}
                   height={50}
@@ -46,12 +64,11 @@ export default function ProductTable() {
                 />
               </TableCell>
               <TableCell>{product.name}</TableCell>
-              <TableCell>${product.price.toFixed(2)}</TableCell>
-              <TableCell>{product.category}</TableCell>
+              <TableCell>₹{product.price}</TableCell>
               <TableCell>
                 <Button
                   variant="destructive"
-                  onClick={() => handleDelete(product.id)}
+                  onClick={() => handleDelete(product._id)}
                 >
                   Delete
                 </Button>

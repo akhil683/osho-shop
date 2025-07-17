@@ -6,7 +6,7 @@ export interface TProduct {
   originalPrice?: number;
   category: string;
   subCategory: string;
-  image: string;
+  imageUrl: string;
   inStock: boolean;
   isNew: boolean;
   isSale: boolean;

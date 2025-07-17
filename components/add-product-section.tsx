@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { createProduct } from "@/lib/actions/product";
 
 export default function AddProductSection() {
   const [name, setName] = useState("");
@@ -16,16 +17,16 @@ export default function AddProductSection() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Server action will be called here
-    console.log({
+    const res = await createProduct({
       name,
       description,
       price,
-      image,
       originalPrice,
       category,
       subCategory,
+      imageUrl: image,
     });
+    console.log(res);
   };
 
   return (

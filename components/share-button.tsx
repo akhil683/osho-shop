@@ -1,37 +1,50 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu"
-import { Share2, MessageCircle, Copy, CheckCircle, Facebook, Twitter, Mail } from "lucide-react"
-import { toast } from "@/hooks/use-toast"
+} from "@/components/ui/dropdown-menu";
+import {
+  Share2,
+  MessageCircle,
+  Copy,
+  CheckCircle,
+  Facebook,
+  Twitter,
+  Mail,
+} from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 interface ShareButtonProps {
   product: {
-    id: number
-    name: string
-    price: number
-    image?: string
-    description?: string
-  }
-  className?: string
-  size?: "sm" | "default" | "lg"
-  variant?: "default" | "outline" | "ghost"
+    id: number;
+    name: string;
+    price: number;
+    image?: string;
+    description?: string;
+  };
+  className?: string;
+  size?: "sm" | "default" | "lg";
+  variant?: "default" | "outline" | "ghost";
 }
 
-export function ShareButton({ product, className = "", size = "default", variant = "outline" }: ShareButtonProps) {
-  const [copied, setCopied] = useState(false)
+export function ShareButton({
+  product,
+  className = "",
+  size = "default",
+  variant = "outline",
+}: ShareButtonProps) {
+  const [copied, setCopied] = useState(false);
 
-  const productUrl = `${typeof window !== "undefined" ? window.location.origin : ""}/product/${product.id}`
-  const shareText = `Check out this amazing ${product.name} for $${product.price} at Harmony Hub!`
-  const encodedText = encodeURIComponent(shareText)
-  const encodedUrl = encodeURIComponent(productUrl)
+  const productUrl = `${typeof window !== "undefined" ? window.location.origin : ""}/product/${product.id}`;
+  const shareText = `Check out this amazing ${product.name} for $${product.price} at Sadhana Music House!`;
+  const encodedText = encodeURIComponent(shareText);
+  const encodedUrl = encodeURIComponent(productUrl);
 
   const shareOptions = [
     {
@@ -62,30 +75,30 @@ export function ShareButton({ product, className = "", size = "default", variant
       color: "text-gray-600",
       bgColor: "hover:bg-gray-50",
     },
-  ]
+  ];
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(productUrl)
-      setCopied(true)
+      await navigator.clipboard.writeText(productUrl);
+      setCopied(true);
       toast({
         title: "Link copied!",
         description: "Product link has been copied to your clipboard.",
-      })
-      setTimeout(() => setCopied(false), 2000)
+      });
+      setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error("Failed to copy link:", err)
+      console.error("Failed to copy link:", err);
       toast({
         title: "Failed to copy",
         description: "Please try again or copy the link manually.",
         variant: "destructive",
-      })
+      });
     }
-  }
+  };
 
   const handleShare = (url: string) => {
-    window.open(url, "_blank", "noopener,noreferrer")
-  }
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   // Native Web Share API (for mobile devices)
   const handleNativeShare = async () => {
@@ -95,12 +108,12 @@ export function ShareButton({ product, className = "", size = "default", variant
           title: product.name,
           text: shareText,
           url: productUrl,
-        })
+        });
       } catch (err) {
-        console.error("Error sharing:", err)
+        console.error("Error sharing:", err);
       }
     }
-  }
+  };
 
   return (
     <DropdownMenu>
@@ -111,12 +124,17 @@ export function ShareButton({ product, className = "", size = "default", variant
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
-        <div className="px-3 py-2 text-sm font-medium text-gray-900 border-b">Share this product</div>
+        <div className="px-3 py-2 text-sm font-medium text-gray-900 border-b">
+          Share this product
+        </div>
 
         {/* Native Share (Mobile) */}
-        {typeof navigator !== "undefined" && navigator.share && (
+        {typeof navigator !== "undefined" && (
           <>
-            <DropdownMenuItem onClick={handleNativeShare} className="cursor-pointer">
+            <DropdownMenuItem
+              onClick={handleNativeShare}
+              className="cursor-pointer"
+            >
               <Share2 className="mr-2 h-4 w-4 text-purple-600" />
               <span>Share via device</span>
             </DropdownMenuItem>
@@ -139,7 +157,10 @@ export function ShareButton({ product, className = "", size = "default", variant
         <DropdownMenuSeparator />
 
         {/* Copy Link */}
-        <DropdownMenuItem onClick={handleCopyLink} className="cursor-pointer hover:bg-gray-50">
+        <DropdownMenuItem
+          onClick={handleCopyLink}
+          className="cursor-pointer hover:bg-gray-50"
+        >
           {copied ? (
             <CheckCircle className="mr-2 h-4 w-4 text-green-600" />
           ) : (
@@ -152,7 +173,9 @@ export function ShareButton({ product, className = "", size = "default", variant
         <DropdownMenuSeparator />
         <div className="px-3 py-2 text-xs text-gray-500">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-purple-100 rounded flex items-center justify-center">🎵</div>
+            <div className="w-8 h-8 bg-purple-100 rounded flex items-center justify-center">
+              🎵
+            </div>
             <div className="flex-1 min-w-0">
               <p className="font-medium truncate">{product.name}</p>
               <p className="text-purple-600 font-bold">${product.price}</p>
@@ -161,5 +184,5 @@ export function ShareButton({ product, className = "", size = "default", variant
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -28,8 +28,12 @@ export default function AnalyticsDashboard() {
           </svg>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">${totalRevenue.toLocaleString()}</div>
-          <p className="text-xs text-muted-foreground">+20.1% from last month</p>
+          <div className="text-2xl font-bold">
+            ${totalRevenue.toLocaleString()}
+          </div>
+          <p className="text-xs text-muted-foreground">
+            +20.1% from last month
+          </p>
         </CardContent>
       </Card>
       <Card>
@@ -52,7 +56,9 @@ export default function AnalyticsDashboard() {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{unitsSold.toLocaleString()}</div>
-          <p className="text-xs text-muted-foreground">+180.1% from last month</p>
+          <p className="text-xs text-muted-foreground">
+            +180.1% from last month
+          </p>
         </CardContent>
       </Card>
       <Card>
@@ -79,7 +85,9 @@ export default function AnalyticsDashboard() {
       </Card>
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Average Order Value</CardTitle>
+          <CardTitle className="text-sm font-medium">
+            Average Order Value
+          </CardTitle>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
