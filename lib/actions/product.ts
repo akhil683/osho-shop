@@ -46,11 +46,11 @@ export async function createProduct({
   }
 }
 
-export async function deleteProduct(id: string) {
+export async function deleteProduct(name: string) {
   await dbConnect();
 
   try {
-    await Product.deleteOne({ _id: id });
+    await Product.deleteOne({ name });
     revalidatePath("/admin");
     revalidatePath("/products");
   } catch (error) {

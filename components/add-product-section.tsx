@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { createProduct } from "@/lib/actions/product";
 
 export default function AddProductSection() {
+  const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -17,20 +18,32 @@ export default function AddProductSection() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await createProduct({
-      name,
-      description,
-      price,
-      originalPrice,
-      category,
-      subCategory,
-      imageUrl: image,
-    });
-    console.log(res);
+    setIsLoading(true);
+    try {
+      const res = await createProduct({
+        name,
+        description,
+        price,
+        originalPrice,
+        category,
+        subCategory,
+        imageUrl: image,
+      });
+      if (res.success) {
+        alert("Product added successfully");
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="mx-auto py-10">
       <h2 className="text-2xl font-bold mb-4">Add New Product</h2>
       <form onSubmit={handleSubmit} className="space-y-4 max-w-2xl">
         <div>
@@ -106,7 +119,9 @@ export default function AddProductSection() {
             required
           />
         </div>
-        <Button type="submit">Add Product</Button>
+        <Button type="submit">
+          {isLoading ? "Loading..." : "Add Product"}
+        </Button>
       </form>
     </div>
   );

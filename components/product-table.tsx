@@ -32,9 +32,9 @@ export default function ProductTable() {
     fetchProducts();
   }, []);
 
-  const handleDelete = async (id: string) => {
-    await deleteProduct(id);
-    setProducts(products.filter((product) => product._id !== id));
+  const handleDelete = async (name: string) => {
+    await deleteProduct(name);
+    setProducts(products.filter((product) => product.name !== name));
   };
 
   return (
@@ -68,7 +68,7 @@ export default function ProductTable() {
               <TableCell>
                 <Button
                   variant="destructive"
-                  onClick={() => handleDelete(product._id)}
+                  onClick={() => handleDelete(product.name)}
                 >
                   Delete
                 </Button>
