@@ -9,13 +9,14 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, CheckCircle } from "lucide-react";
+import { sendOrder } from "@/lib/actions/send-email";
 
 interface Product {
   id: number;
   name: string;
   description: string;
   price: number;
-  originalPrice?: number;
+  originalPrice: number;
   category: string;
   image: string;
   inStock: boolean;
@@ -43,32 +44,19 @@ export function OrderForm({ product }: OrderFormProps) {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/send-order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          product: {
-            name: product.name,
-            price: product.price,
-            unit: product.unit,
-          },
-          quantity,
-          totalPrice,
-          customer: {
-            name: customerName,
-            email: customerEmail,
-            phone: customerPhone,
-          },
-          specialRequests,
-        }),
+      const res = await sendOrder({
+        productName: product.name,
+        customerName,
+        customerEmail,
+        customerPhone,
+        specialRequests,
+        quantity,
       });
-
-      if (response.ok) {
+      if (res.success) {
+        alert("Order Received. Congratulations.");
         setIsSubmitted(true);
       } else {
-        throw new Error("Failed to send order");
+        alert("Something went wrong. Try Again.");
       }
     } catch (error) {
       console.error("Error sending order:", error);
@@ -137,9 +125,7 @@ export function OrderForm({ product }: OrderFormProps) {
           >
             +
           </Button>
-          <span className="text-sm text-muted-foreground ml-2">
-            {product.unit}
-          </span>
+          <span className="text-sm text-muted-foreground ml-2">{quantity}</span>
         </div>
       </div>
       {/* Total Price */}{" "}
