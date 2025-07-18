@@ -74,7 +74,7 @@ export default function ProductsPage({
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
             {/* Search */}
-            <div className="relative flex-1 max-w-md">
+            <div className="relative flex-1 w-full max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
                 type="search"
@@ -187,7 +187,7 @@ export default function ProductsPage({
                   >
                     <div className="relative overflow-hidden">
                       <Image
-                        src={product.image || "/placeholder.svg"}
+                        src={product.imageUrl || "/placeholder.svg"}
                         alt={product.name}
                         width={200}
                         height={200}

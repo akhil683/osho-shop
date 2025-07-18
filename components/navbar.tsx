@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -86,11 +87,11 @@ export function Navbar() {
                 <nav className="mt-8 space-y-6">
                   {navigationItems.map((item) => (
                     <Link
-                      key={item.name}
                       href={item.href}
+                      key={item.name}
                       className="block text-lg font-medium text-gray-700 hover:text-purple-600 transition-colors"
                     >
-                      {item.name}
+                      <SheetClose>{item.name}</SheetClose>
                     </Link>
                   ))}
                 </nav>

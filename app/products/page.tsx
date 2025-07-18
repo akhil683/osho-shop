@@ -26,11 +26,12 @@ import { getAllProducts } from "@/lib/actions/product";
 import { TProduct } from "@/data/product";
 
 export default function ProductsPage() {
-  const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortBy, setSortBy] = useState("name");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
+  const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState<TProduct[]>([]);
 
   useEffect(() => {
@@ -82,7 +83,7 @@ export default function ProductsPage() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
             {/* Search */}
-            <div className="relative flex-1 max-w-md">
+            <div className="relative flex-1 w-full max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
                 type="search"
@@ -204,7 +205,7 @@ export default function ProductsPage() {
                           alt={product.name}
                           width={200}
                           height={200}
-                          className={`object-cover group-hover:scale-105 transition-transform duration-300 ${
+                          className={`object-contain group-hover:scale-105 transition-transform duration-300 ${
                             viewMode === "list" ? "w-48 h-32" : "w-full h-48"
                           }`}
                         />
@@ -276,9 +277,9 @@ export default function ProductsPage() {
                           <Button
                             asChild
                             className="flex-1 bg-purple-600 hover:bg-purple-700 text-white"
-                            disabled={!product.inStock}
+                            disabled={product.inStock === false}
                           >
-                            <Link href={`/product/${product.id}`}>
+                            <Link href={`/product/${product.name}`}>
                               {product.inStock === false
                                 ? "Out of Stock"
                                 : "View Details"}

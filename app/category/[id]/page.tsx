@@ -1,5 +1,6 @@
 import ProductsPage from "@/components/Products.component";
-import { featuredProducts } from "@/data/product";
+import { TProduct } from "@/data/product";
+import { getAllProducts } from "@/lib/actions/product";
 
 export default async function CategoryPage({
   params,
@@ -7,13 +8,10 @@ export default async function CategoryPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-
-  const filtered = featuredProducts.filter(
-    (product) => product?.category === id,
+  const products = await getAllProducts();
+  const filtered = products.filter(
+    (product: TProduct) => product?.category === id,
   );
-  if (filtered.length === 0) {
-    return null;
-  }
   return (
     <section>
       <ProductsPage products={filtered} />

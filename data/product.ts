@@ -11,6 +11,34 @@ export interface TProduct {
   isNew: boolean;
   isSale: boolean;
 }
+
+export const categories = [
+  {
+    name: "Guitar",
+    icon: "🎸",
+    count: "150+ items",
+    color: "from-red-400 to-red-600",
+  },
+  {
+    name: "Keyboard",
+    icon: "🎹",
+    count: "80+ items",
+    color: "from-blue-400 to-blue-600",
+  },
+  {
+    name: "Drum",
+    icon: "🥁",
+    count: "60+ items",
+    color: "from-green-400 to-green-600",
+  },
+  {
+    name: "Audio Equipment",
+    icon: "🎤",
+    count: "120+ items",
+    color: "from-purple-400 to-purple-600",
+  },
+];
+
 export const featuredProducts = [
   {
     id: 1,

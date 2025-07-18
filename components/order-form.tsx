@@ -83,7 +83,7 @@ export function OrderForm({ product }: OrderFormProps) {
             <div className="bg-white p-4 rounded-lg border border-green-200">
               <h4 className="font-semibold mb-2">Order Summary:</h4>
               <p>
-                {quantity} × {product.name} = ${totalPrice}
+                {quantity} × {product.name} = ₹{totalPrice}
               </p>
             </div>
           </div>
@@ -95,6 +95,12 @@ export function OrderForm({ product }: OrderFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Quantity */}
+      {/* Total Price */}{" "}
+      <div className="bg-purple-100 p-3 rounded-lg">
+        <p className="text-lg font-semibold text-purple-700">
+          Total: ₹{totalPrice}
+        </p>
+      </div>
       <div className="space-y-2">
         <Label htmlFor="quantity">Quantity</Label>
         <div className="flex items-center space-x-2">
@@ -125,14 +131,8 @@ export function OrderForm({ product }: OrderFormProps) {
           >
             +
           </Button>
-          <span className="text-sm text-muted-foreground ml-2">{quantity}</span>
+          {/* <span className="text-sm text-muted-foreground ml-2">{quantity}</span> */}
         </div>
-      </div>
-      {/* Total Price */}{" "}
-      <div className="bg-purple-100 p-3 rounded-lg">
-        <p className="text-lg font-semibold text-purple-700">
-          Total: ₹{totalPrice}
-        </p>
       </div>
       {/* Customer Information */}
       <div className="space-y-4">

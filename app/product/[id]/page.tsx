@@ -6,16 +6,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { OrderForm } from "@/components/order-form";
 import { ShareButton } from "@/components/share-button";
-import { featuredProducts } from "@/data/product";
+import { TProduct } from "@/data/product";
+import { getAllProducts } from "@/lib/actions/product";
 
 export default async function ProductPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const products = await getAllProducts();
   const { id } = await params;
-  const product = featuredProducts.find((p) => p.id == Number.parseInt(id));
-  console.log("id", id);
+  const product = products.find((p: TProduct) => p.name == id);
 
   if (!product) {
     notFound();
@@ -42,11 +43,11 @@ export default async function ProductPage({
           <div className="space-y-4">
             <div className="relative">
               <Image
-                src={product.image || "/placeholder.svg"}
+                src={product.imageUrl || "/placeholder.svg"}
                 alt={product.name}
                 width={400}
                 height={400}
-                className="w-full h-96 object-cover rounded-lg"
+                className="w-full h-96 object-contain rounded-lg"
               />
               {/* {!product.inStock && ( */}
               {/*   <Badge variant="secondary" className="absolute top-4 right-4"> */}
@@ -69,27 +70,27 @@ export default async function ProductPage({
             </div>
 
             {/* Share Section */}
-            <div className="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-100">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-red-100 rounded-lg">
-                  <Share2 className="h-5 w-5 text-red-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-red-800">
-                    Love this instrument?
-                  </h4>
-                  <p className="text-sm text-red-600">
-                    Share it with your friends!
-                  </p>
-                </div>
-              </div>
-              <ShareButton
-                product={product}
-                size="lg"
-                variant="default"
-                className="bg-red-600 hover:bg-red-700"
-              />
-            </div>
+            {/* <div className="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-100"> */}
+            {/*   <div className="flex items-center space-x-3"> */}
+            {/*     <div className="p-2 bg-red-100 rounded-lg"> */}
+            {/*       <Share2 className="h-5 w-5 text-red-600" /> */}
+            {/*     </div> */}
+            {/*     <div> */}
+            {/*       <h4 className="font-semibold text-red-800"> */}
+            {/*         Love this instrument? */}
+            {/*       </h4> */}
+            {/*       <p className="text-sm text-red-600"> */}
+            {/*         Share it with your friends! */}
+            {/*       </p> */}
+            {/*     </div> */}
+            {/*   </div> */}
+            {/*   <ShareButton */}
+            {/*     product={product} */}
+            {/*     size="lg" */}
+            {/*     variant="default" */}
+            {/*     className="bg-red-600 hover:bg-red-700" */}
+            {/*   /> */}
+            {/* </div> */}
           </div>
 
           {/* Product Details */}

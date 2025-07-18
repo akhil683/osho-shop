@@ -1,20 +1,12 @@
 import Link from "next/link";
-import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { InstagramSection } from "@/components/instagram-section";
 import { BusinessHours } from "@/components/business-hours";
 import { PaymentSection } from "@/components/payment-section";
 import { ParallaxHero } from "@/components/parallax-hero";
-import { featuredProducts } from "@/data/product";
-import { ShareButton } from "@/components/share-button";
+import HomeProducts from "@/components/home-products";
+import { categories } from "@/data/product";
 
 export default function HomePage() {
   return (
@@ -35,32 +27,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                name: "Guitars",
-                icon: "🎸",
-                count: "150+ items",
-                color: "from-red-400 to-red-600",
-              },
-              {
-                name: "Keyboards",
-                icon: "🎹",
-                count: "80+ items",
-                color: "from-blue-400 to-blue-600",
-              },
-              {
-                name: "Drums",
-                icon: "🥁",
-                count: "60+ items",
-                color: "from-green-400 to-green-600",
-              },
-              {
-                name: "Audio Equipment",
-                icon: "🎤",
-                count: "120+ items",
-                color: "from-purple-400 to-purple-600",
-              },
-            ].map((category) => (
+            {categories.map((category) => (
               <Link
                 key={category.name}
                 href={`/category/${category.name}`}
@@ -97,93 +64,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
-            {featuredProducts.map((product) => (
-              <Card
-                key={product.id}
-                className="group overflow-hidden hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm"
-              >
-                <CardHeader className="p-0 relative">
-                  <div className="relative overflow-hidden">
-                    <Image
-                      src={product.image || "/placeholder.svg"}
-                      alt={product.name}
-                      width={200}
-                      height={200}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute top-3 left-3 flex flex-col gap-2">
-                      {product.isNew && (
-                        <Badge className="bg-green-500 hover:bg-green-600 text-white font-semibold">
-                          NEW
-                        </Badge>
-                      )}
-                      {product.isSale && (
-                        <Badge className="bg-red-500 hover:bg-red-600 text-white font-semibold">
-                          SALE
-                        </Badge>
-                      )}
-                    </div>
-                    {!product.inStock && (
-                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                        <Badge
-                          variant="secondary"
-                          className="text-lg px-4 py-2"
-                        >
-                          Out of Stock
-                        </Badge>
-                      </div>
-                    )}
-                  </div>
-                </CardHeader>
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <Badge
-                      variant="outline"
-                      className="text-xs bg-purple-50 text-purple-700 border-purple-200"
-                    >
-                      {product.category}
-                    </Badge>
-                  </div>
-                  <CardTitle className="text-lg mb-2 group-hover:text-purple-600 transition-colors line-clamp-2">
-                    {product.name}
-                  </CardTitle>
-                  <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
-                    {product.description}
-                  </p>
-                  <div className="flex items-center space-x-2">
-                    <p className="text-2xl font-bold text-purple-600">
-                      ₹{product.price}
-                    </p>
-                    {product.originalPrice && (
-                      <p className="text-lg text-gray-400 line-through">
-                        ₹{product.originalPrice}
-                      </p>
-                    )}
-                  </div>
-                </CardContent>
-                <CardFooter className="p-4 pt-0">
-                  <div className="flex gap-2 w-full">
-                    <Button
-                      asChild
-                      className="flex-1 bg-purple-600 hover:bg-purple-700 text-white"
-                      disabled={!product.inStock}
-                    >
-                      <Link href={`/product/${product.id}`}>
-                        {product.inStock ? "View Details" : "Out of Stock"}
-                      </Link>
-                    </Button>
-                    <ShareButton
-                      product={product}
-                      size="default"
-                      variant="outline"
-                      className="border-purple-200 hover:bg-purple-50"
-                    />
-                  </div>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
+          <HomeProducts />
 
           {/* See More Button */}
           <div className="text-center">
