@@ -6,7 +6,6 @@ import { BusinessHours } from "@/components/business-hours";
 import { PaymentSection } from "@/components/payment-section";
 import { ParallaxHero } from "@/components/parallax-hero";
 import HomeProducts from "@/components/home-products";
-import { categories } from "@/data/product";
 
 export default function HomePage() {
   return (
@@ -27,7 +26,32 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.map((category) => (
+            {[
+              {
+                name: "Guitar",
+                icon: "🎸",
+                count: "150+ items",
+                color: "from-red-400 to-red-600",
+              },
+              {
+                name: "Keyboard",
+                icon: "🎹",
+                count: "80+ items",
+                color: "from-blue-400 to-blue-600",
+              },
+              {
+                name: "Drum",
+                icon: "🥁",
+                count: "60+ items",
+                color: "from-green-400 to-green-600",
+              },
+              {
+                name: "Audio Equipment",
+                icon: "🎤",
+                count: "120+ items",
+                color: "from-purple-400 to-purple-600",
+              },
+            ].map((category) => (
               <Link
                 key={category.name}
                 href={`/category/${category.name}`}

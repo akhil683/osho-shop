@@ -9,6 +9,14 @@ import { ShareButton } from "@/components/share-button";
 import { TProduct } from "@/data/product";
 import { getAllProducts } from "@/lib/actions/product";
 
+export async function generateStaticParams() {
+  const products = await getAllProducts();
+
+  return products.map((product: TProduct) => ({
+    id: product.name,
+  }));
+}
+
 export default async function ProductPage({
   params,
 }: {
