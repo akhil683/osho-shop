@@ -178,7 +178,7 @@ export function ShareButton({
             </div>
             <div className="flex-1 min-w-0">
               <p className="font-medium truncate">{product.name}</p>
-              <p className="text-purple-600 font-bold">${product.price}</p>
+              <p className="text-purple-600 font-bold">₹{product.price}</p>
             </div>
           </div>
         </div>

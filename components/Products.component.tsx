@@ -207,7 +207,7 @@ export default function ProductsPage({
                           </Badge>
                         )}
                       </div>
-                      {!product.inStock && (
+                      {product.inStock === false && (
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                           <Badge
                             variant="secondary"
@@ -257,10 +257,12 @@ export default function ProductsPage({
                         <Button
                           asChild
                           className="flex-1 bg-purple-600 hover:bg-purple-700 text-white"
-                          disabled={!product.inStock}
+                          disabled={product.inStock === false}
                         >
                           <Link href={`/product/${product.id}`}>
-                            {product.inStock ? "View Details" : "Out of Stock"}
+                            {product.inStock === false
+                              ? "Out of Stock"
+                              : "View Details"}
                           </Link>
                         </Button>
                         <ShareButton
