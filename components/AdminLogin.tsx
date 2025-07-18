@@ -22,7 +22,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className=" flex justify-center items-center w-full min-h-screen bg-white">
+    <div className=" flex justify-center items-center w-full min-h-[calc(100vh-200px)] bg-white">
       <div className="max-w-5xl flex flex-col gap-4">
         <h2 className="w-full font-semibold text-2xl text-center">
           Login to Admin Dashboard
