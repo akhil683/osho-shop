@@ -6,6 +6,7 @@ import { BusinessHours } from "@/components/business-hours";
 import { PaymentSection } from "@/components/payment-section";
 import { ParallaxHero } from "@/components/parallax-hero";
 import HomeProducts from "@/components/home-products";
+import { ContactSection } from "@/components/Contact-us";
 
 export default function HomePage() {
   return (
@@ -126,6 +127,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      <ContactSection />
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4">

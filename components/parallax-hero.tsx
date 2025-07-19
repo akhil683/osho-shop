@@ -22,7 +22,7 @@ export function ParallaxHero() {
   return (
     <section
       ref={heroRef}
-      className="relative bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-900 md:py-20 py-10 overflow-hidden min-h-screen flex items-center"
+      className="relative bg-gradient-to-br md:py-20 py-10 overflow-hidden min-h-screen flex items-center text-black"
     >
       {/* Main Content - No parallax, stays in normal flow */}
       <div className="container mx-auto px-4 relative z-10">
@@ -31,7 +31,7 @@ export function ParallaxHero() {
           <div className="space-y-8 text-white">
             <div className="space-y-4">
               <div
-                className="inline-flex items-center px-4 py-2 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm"
+                className="inline-flex items-center px-4 py-2 bg-orange-400/20 md:font-semibold text-orange-600 rounded-full text-sm font-medium backdrop-blur-sm"
                 style={{
                   transform: `translateY(${scrollY * -0.1}px)`,
                 }}
@@ -39,18 +39,18 @@ export function ParallaxHero() {
                 🎵 Premium Musical Instruments
               </div>
               <h1
-                className="text-3xl lg:text-6xl font-bold leading-tight"
+                className="text-3xl lg:text-6xl font-bold leading-tight text-gray-900"
                 style={{
                   transform: `translateY(${scrollY * -0.05}px)`,
                 }}
               >
                 Welcome to
-                <span className="block text-yellow-300 mt-2">
+                <span className="block text-orange-500 mt-2">
                   Sadhana Music House
                 </span>
               </h1>
               <p
-                className="md:text-xl text-sm text-purple-100 leading-relaxed max-w-lg"
+                className="md:text-xl text-sm text-gray-700 leading-relaxed max-w-lg"
                 style={{
                   transform: `translateY(${scrollY * -0.03}px)`,
                 }}
@@ -69,14 +69,14 @@ export function ParallaxHero() {
             >
               <Button
                 size="lg"
-                className="bg-yellow-600 hover:bg-yellow-700 px-8 py-4 text-lg"
+                className="bg-orange-500 hover:bg-orange-600 px-8 py-4 text-lg"
               >
                 <Link href={"/products"}>Shop Instruments</Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-purple-900 px-8 py-4 text-lg bg-transparent"
+                className="border-gray-300 text-gray-700 hover:bg-gray-100 px-8 py-4 text-lg bg-white"
               >
                 <Link href={"/products"}>Browse Brands</Link>
               </Button>
@@ -84,22 +84,22 @@ export function ParallaxHero() {
 
             {/* Stats */}
             <div
-              className="flex items-center space-x-8 pt-8 border-t border-white/20"
+              className="flex items-center text-black space-x-8 pt-8 border-t border-gray-200"
               style={{
                 transform: `translateY(${scrollY * -0.01}px)`,
               }}
             >
               <div className="text-center">
                 <div className="text-2xl font-bold">1000+</div>
-                <div className="text-sm text-purple-200">Instruments</div>
+                <div className="text-sm text-gray-500">Instruments</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold">50+</div>
-                <div className="text-sm text-purple-200">Top Brands</div>
+                <div className="text-sm text-gray-500">Top Brands</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold">5★</div>
-                <div className="text-sm text-purple-200">Customer Rating</div>
+                <div className="text-sm text-gray-500">Customer Rating</div>
               </div>
             </div>
           </div>
@@ -160,30 +160,6 @@ export function ParallaxHero() {
             ></div>
           </div>
         </div>
-
-        {/* Trust Indicators with Parallax */}
-        {/* <div className="mt-20 pt-12 border-t border-white/20"> */}
-        {/*   <div className="text-center mb-8"> */}
-        {/*     <p className="text-purple-200 font-medium"> */}
-        {/*       Trusted by musicians worldwide */}
-        {/*     </p> */}
-        {/*   </div> */}
-        {/*   <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center"> */}
-        {/*     {[ */}
-        {/*       { icon: "🎸", text: "Premium Guitars" }, */}
-        {/*       { icon: "🎹", text: "Pro Keyboards" }, */}
-        {/*       { icon: "🥁", text: "Quality Drums" }, */}
-        {/*       { icon: "🎤", text: "Studio Audio" }, */}
-        {/*     ].map((item, index) => ( */}
-        {/*       <div key={index} className="text-center text-white"> */}
-        {/*         <div className="bg-white/10 rounded-lg p-4 mb-2 backdrop-blur-sm"> */}
-        {/*           <span className="text-2xl">{item.icon}</span> */}
-        {/*         </div> */}
-        {/*         <p className="text-sm font-medium">{item.text}</p> */}
-        {/*       </div> */}
-        {/*     ))} */}
-        {/*   </div> */}
-        {/* </div> */}
       </div>
 
       {/* Floating Musical Notes */}
