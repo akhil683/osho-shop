@@ -51,6 +51,7 @@ export function OrderForm({ product }: OrderFormProps) {
         customerPhone,
         specialRequests,
         quantity,
+        totalPrice,
       });
       if (res.success) {
         alert("Order Received. Congratulations.");

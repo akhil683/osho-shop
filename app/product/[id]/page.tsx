@@ -24,7 +24,9 @@ export default async function ProductPage({
 }) {
   const products = await getAllProducts();
   const { id } = await params;
-  const product = products.find((p: TProduct) => p.name == id);
+  const product = products.find(
+    (p: TProduct) => p.name.toLowerCase().replace(/\s+/g, "-") == id,
+  );
 
   if (!product) {
     notFound();

@@ -191,7 +191,7 @@ export default function ProductsPage({
                         alt={product.name}
                         width={200}
                         height={200}
-                        className={`object-cover group-hover:scale-105 transition-transform duration-300 ${
+                        className={`object-contain group-hover:scale-105 transition-transform duration-300 ${
                           viewMode === "list" ? "w-48 h-32" : "w-full h-48"
                         }`}
                       />
@@ -259,7 +259,9 @@ export default function ProductsPage({
                           className="flex-1 bg-purple-600 hover:bg-purple-700 text-white"
                           disabled={product.inStock === false}
                         >
-                          <Link href={`/product/${product.id}`}>
+                          <Link
+                            href={`/product/${product.name.toLowerCase().replace(/\s+/g, "-")}`}
+                          >
                             {product.inStock === false
                               ? "Out of Stock"
                               : "View Details"}

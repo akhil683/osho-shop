@@ -108,7 +108,9 @@ export default function HomeProducts() {
                 className="flex-1 bg-purple-600 hover:bg-purple-700 text-white"
                 disabled={product.inStock === false}
               >
-                <Link href={`/product/${product.name}`}>
+                <Link
+                  href={`/product/${product.name.toLowerCase().replace(/\s+/g, "-")}`}
+                >
                   {product.inStock === false ? "Out of Stock" : "View Details"}
                 </Link>
               </Button>

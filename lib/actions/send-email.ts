@@ -25,6 +25,7 @@ export async function sendOrder({
   quantity,
   specialRequests,
   productName,
+  totalPrice,
 }: {
   customerName: string;
   customerEmail: string;
@@ -32,6 +33,7 @@ export async function sendOrder({
   quantity: number;
   specialRequests: string;
   productName: string;
+  totalPrice: string;
 }) {
   const mailOptions = {
     from: {
@@ -85,6 +87,12 @@ export async function sendOrder({
               <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold; vertical-align: top;">Message</td>
               <td style="padding: 12px; border: 1px solid #ddd; line-height: 1.6;">
                 ${specialRequests.replace(/\n/g, "<br>")}
+              </td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+              <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold; vertical-align: top;">Price</td>
+              <td style="padding: 12px; border: 1px solid #ddd; line-height: 1.6;">
+                ${totalPrice}
               </td>
             </tr>
             <tr style="background-color: white;">
