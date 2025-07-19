@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import AdminLogin from "@/components/AdminLogin";
 
 export default function AdminPage() {
+  const [isLoading, setIsLoading] = useState(true);
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
@@ -18,7 +19,13 @@ export default function AdminPage() {
     ) {
       setIsAuth(true);
     }
+    setIsLoading(false);
   }, []);
+
+  if (isLoading) {
+    return <div className="text-3xl text-center mt-32">Loading...</div>;
+  }
+
   return (
     <>
       {!isAuth ? (

@@ -11,32 +11,35 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { getAllProducts, deleteProduct } from "@/lib/actions/product";
-import { useEffect, useState } from "react";
-
-interface Product {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  imageUrl: string;
-}
+import { useQuery } from "@tanstack/react-query";
+import { TProduct } from "@/data/product";
 
 export default function ProductTable() {
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const fetchedProducts = await getAllProducts();
-      setProducts(fetchedProducts);
-    };
-    fetchProducts();
-  }, []);
+  const { data: products = [], isLoading } = useQuery<TProduct[], Error>({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const result = await getAllProducts();
+      return result;
+    },
+    staleTime: 5 * 60 * 1000,
+    gcTime: 10 * 60 * 1000,
+    retry: 3,
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+  });
 
   const handleDelete = async (name: string) => {
     await deleteProduct(name);
-    setProducts(products.filter((product) => product.name !== name));
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex flex-col justify-center items-center gap-6 w-full">
+        <div className="h-24 rounded-xl w-full bg-gray-300 animate-pulse" />
+        <div className="h-24 rounded-xl w-full bg-gray-300 animate-pulse" />
+        <div className="h-24 rounded-xl w-full bg-gray-300 animate-pulse" />
+      </div>
+    );
+  }
   return (
     <div className="mx-auto py-10">
       <h2 className="text-2xl font-bold mb-4">All Products</h2>
@@ -51,8 +54,8 @@ export default function ProductTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {products.map((product: Product, index: number) => (
-            <TableRow key={product._id}>
+          {products.map((product: TProduct, index: number) => (
+            <TableRow key={product.name}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>
                 <Image
