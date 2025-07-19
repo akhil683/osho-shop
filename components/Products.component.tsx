@@ -45,7 +45,7 @@ export default function ProductsPage({
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.description.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory =
-        selectedCategory === "all" || product.category === selectedCategory;
+        selectedCategory === "all" || product.subCategory === selectedCategory;
 
       return matchesSearch && matchesCategory;
     });

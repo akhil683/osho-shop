@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
+import Providers from "@/lib/ReactQueryProvider";
 
 export const metadata: Metadata = {
   title: "Sadhana Music House",
@@ -15,10 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <Navbar />
-        {children}
-      </body>
+      <Providers>
+        <body>
+          <Navbar />
+          {children}
+        </body>
+      </Providers>
     </html>
   );
 }

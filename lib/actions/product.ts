@@ -63,6 +63,7 @@ export async function getAllProducts() {
   await dbConnect();
   try {
     const products = await Product.find({});
+    console.log(products);
     return JSON.parse(JSON.stringify(products));
   } catch (error) {
     console.error("Error fetching products:", error);
