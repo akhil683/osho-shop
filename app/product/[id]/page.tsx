@@ -1,11 +1,10 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Share2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { OrderForm } from "@/components/order-form";
-import { ShareButton } from "@/components/share-button";
 import { TProduct } from "@/data/product";
 import { getAllProducts } from "@/lib/actions/product";
 
@@ -78,29 +77,6 @@ export default async function ProductPage({
                 {product.description}
               </p>
             </div>
-
-            {/* Share Section */}
-            {/* <div className="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-100"> */}
-            {/*   <div className="flex items-center space-x-3"> */}
-            {/*     <div className="p-2 bg-red-100 rounded-lg"> */}
-            {/*       <Share2 className="h-5 w-5 text-red-600" /> */}
-            {/*     </div> */}
-            {/*     <div> */}
-            {/*       <h4 className="font-semibold text-red-800"> */}
-            {/*         Love this instrument? */}
-            {/*       </h4> */}
-            {/*       <p className="text-sm text-red-600"> */}
-            {/*         Share it with your friends! */}
-            {/*       </p> */}
-            {/*     </div> */}
-            {/*   </div> */}
-            {/*   <ShareButton */}
-            {/*     product={product} */}
-            {/*     size="lg" */}
-            {/*     variant="default" */}
-            {/*     className="bg-red-600 hover:bg-red-700" */}
-            {/*   /> */}
-            {/* </div> */}
           </div>
 
           {/* Product Details */}

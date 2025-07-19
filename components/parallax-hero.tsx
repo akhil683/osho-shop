@@ -162,28 +162,28 @@ export function ParallaxHero() {
         </div>
 
         {/* Trust Indicators with Parallax */}
-        <div className="mt-20 pt-12 border-t border-white/20">
-          <div className="text-center mb-8">
-            <p className="text-purple-200 font-medium">
-              Trusted by musicians worldwide
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-            {[
-              { icon: "🎸", text: "Premium Guitars" },
-              { icon: "🎹", text: "Pro Keyboards" },
-              { icon: "🥁", text: "Quality Drums" },
-              { icon: "🎤", text: "Studio Audio" },
-            ].map((item, index) => (
-              <div key={index} className="text-center text-white">
-                <div className="bg-white/10 rounded-lg p-4 mb-2 backdrop-blur-sm">
-                  <span className="text-2xl">{item.icon}</span>
-                </div>
-                <p className="text-sm font-medium">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* <div className="mt-20 pt-12 border-t border-white/20"> */}
+        {/*   <div className="text-center mb-8"> */}
+        {/*     <p className="text-purple-200 font-medium"> */}
+        {/*       Trusted by musicians worldwide */}
+        {/*     </p> */}
+        {/*   </div> */}
+        {/*   <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center"> */}
+        {/*     {[ */}
+        {/*       { icon: "🎸", text: "Premium Guitars" }, */}
+        {/*       { icon: "🎹", text: "Pro Keyboards" }, */}
+        {/*       { icon: "🥁", text: "Quality Drums" }, */}
+        {/*       { icon: "🎤", text: "Studio Audio" }, */}
+        {/*     ].map((item, index) => ( */}
+        {/*       <div key={index} className="text-center text-white"> */}
+        {/*         <div className="bg-white/10 rounded-lg p-4 mb-2 backdrop-blur-sm"> */}
+        {/*           <span className="text-2xl">{item.icon}</span> */}
+        {/*         </div> */}
+        {/*         <p className="text-sm font-medium">{item.text}</p> */}
+        {/*       </div> */}
+        {/*     ))} */}
+        {/*   </div> */}
+        {/* </div> */}
       </div>
 
       {/* Floating Musical Notes */}

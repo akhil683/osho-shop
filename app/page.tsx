@@ -25,7 +25,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               {
                 name: "Guitar",
@@ -39,11 +39,18 @@ export default function HomePage() {
                 count: "80+ items",
                 color: "from-blue-400 to-blue-600",
               },
+
               {
-                name: "Drum",
-                icon: "🥁",
+                name: "Harmonium",
+                icon: "🪗",
                 count: "60+ items",
                 color: "from-green-400 to-green-600",
+              },
+              {
+                name: "Dholak",
+                icon: "🪘",
+                count: "60+ items",
+                color: "from-orange-400 to-orange-600",
               },
               {
                 name: "Audio Equipment",
@@ -112,10 +119,10 @@ export default function HomePage() {
       {/* Business Hours & Payment Info */}
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <BusinessHours />
-            <PaymentSection />
-          </div>
+          {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-8"> */}
+          {/* <BusinessHours /> */}
+          <PaymentSection />
+          {/* </div> */}
         </div>
       </section>
 

@@ -25,9 +25,16 @@ export const categories = [
     count: "80+ items",
     color: "from-blue-400 to-blue-600",
   },
+
   {
-    name: "Drum",
-    icon: "🥁",
+    name: "Harmonium",
+    icon: "🪗",
+    count: "60+ items",
+    color: "from-green-400 to-green-600",
+  },
+  {
+    name: "Dholak",
+    icon: "🪘",
     count: "60+ items",
     color: "from-green-400 to-green-600",
   },
